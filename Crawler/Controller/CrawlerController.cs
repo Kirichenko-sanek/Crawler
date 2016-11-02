@@ -1,7 +1,4 @@
 ﻿using System;
-using Castle.Windsor;
-using Crawler.BL.CW;
-using Crawler.Interfaces;
 using Crawler.Interfaces.Manager;
 
 namespace Crawler.Controller
@@ -17,7 +14,9 @@ namespace Crawler.Controller
 
         public void StartCrowler()
         {
-            Console.WriteLine(_manager.GetResponse("http://www.active.com/"));
+            Console.WriteLine("Performed data collection. Please wait");
+            var result = _manager.GetResponse("http://www.active.com/");
+            Console.WriteLine(result ? "Data saved" : "Error");
             Console.ReadKey();
         }
     }

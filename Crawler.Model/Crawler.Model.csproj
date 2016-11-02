@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Crawler.Core\Crawler.Core.csproj">
+      <Project>{b50afc09-939a-466a-a7f5-bceeade67ddc}</Project>
+      <Name>Crawler.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Crawler.Interfaces\Crawler.Interfaces.csproj">
       <Project>{1af7af2b-2b43-48de-bb2b-be34d26442ea}</Project>
       <Name>Crawler.Interfaces</Name>

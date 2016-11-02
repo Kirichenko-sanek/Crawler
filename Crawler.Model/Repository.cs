@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using Crawler.Core;
 using Crawler.Interfaces.Repository;
 
 
@@ -6,9 +8,58 @@ namespace Crawler.Model
 {
     public class Repository : IRepository
     {
-        public void WriteToFile(string html)
+        public bool WriteToFile(List<Info> info, string type)
         {
-            File.WriteAllText(@"\Work\Crawler\Crawler.Model\Test.txt", html);
+            System.Text.StringBuilder theBuilder = new System.Text.StringBuilder();
+            theBuilder.Append("Event Name");
+            theBuilder.Append(";");
+            theBuilder.Append("Event Date");
+            theBuilder.Append(";");
+            theBuilder.Append("Ewent Location");
+            theBuilder.Append(";");
+            theBuilder.Append("Ewent Category");
+            theBuilder.Append(";");
+            theBuilder.Append("Ewent Type");
+            theBuilder.Append(";");
+            theBuilder.Append("Organizing Company");
+            theBuilder.Append(";");
+            theBuilder.Append("Company Website");
+            theBuilder.Append(";");
+            theBuilder.Append("Event Url");            
+            theBuilder.Append("\n");
+            foreach (var item in info)
+            {
+                string str = "";
+
+                theBuilder.Append(item.Name);
+                theBuilder.Append(";");
+                theBuilder.Append(item.Date);
+                theBuilder.Append(";");
+                theBuilder.Append(item.Place);
+                theBuilder.Append(";");
+                theBuilder.Append(item.Category);
+                theBuilder.Append(";");
+                foreach (var tag in item.Tag)
+                {
+                    str = str + " " + tag;
+                }
+                theBuilder.Append(str);
+                theBuilder.Append(";");
+                theBuilder.Append(item.OrganizerName);
+                theBuilder.Append(";");
+                theBuilder.Append(item.Organizer);
+                theBuilder.Append(";");
+                theBuilder.Append(item.Url);
+                theBuilder.Append("\n");
+
+            }
+
+            using (StreamWriter theWriter = new StreamWriter(@"\Work\Crawler\Crawler.Model\" + type + ".csv"))
+            {
+                theWriter.Write(theBuilder.ToString());
+            }
+
+            return true;
         }
 
     }
