@@ -15,11 +15,11 @@ namespace Crawler.Model
             theBuilder.Append(";");
             theBuilder.Append("Event Date");
             theBuilder.Append(";");
-            theBuilder.Append("Ewent Location");
+            theBuilder.Append("Event Location");
             theBuilder.Append(";");
-            theBuilder.Append("Ewent Category");
+            theBuilder.Append("Event Category");
             theBuilder.Append(";");
-            theBuilder.Append("Ewent Type");
+            theBuilder.Append("Event Type");
             theBuilder.Append(";");
             theBuilder.Append("Organizing Company");
             theBuilder.Append(";");

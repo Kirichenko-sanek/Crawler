@@ -61,8 +61,8 @@ namespace Crawler.BL
                 htmlInfo.LoadHtml(wClient.DownloadString(item.Replace("http://www.activekids.com/","")));
 
                 information.Name =
-                    htmlInfo.DocumentNode.SelectSingleNode("//div[@class='ed-details']/h1")?.InnerText ??
-                    " ";
+                    htmlInfo.DocumentNode.SelectSingleNode("//div[@class='ed-details']/h1")?
+                        .InnerText.Replace("&amp;", "and") ?? " ";
                 Console.WriteLine("Information about the event collection:" + information.Name);
                 
 
@@ -75,10 +75,14 @@ namespace Crawler.BL
                 {
                     var adressName = htmlInfo.DocumentNode.SelectSingleNode(
                         "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-name']")?
-                        .InnerText.Trim();
+                        .InnerText.Trim() ?? " ";
                     var adress = htmlInfo.DocumentNode.SelectNodes("//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-text']/span");
-                    information.Place = adressName + " " + adress[0].InnerText + " " + adress[1].InnerText + " " +
-                                        adress[3].InnerText + " " + (adress[4].InnerText).Replace("&nbsp;", "");
+                    information.Place = adressName.Replace("&nbsp;", "").Replace("&amp;", "and") + " ";
+                    foreach (var str in adress)
+                    {
+                        information.Place = information.Place +
+                                            str.InnerText.Replace("&nbsp;", "").Replace("&amp;", "and") + " ";
+                    }
                 }
                 catch (Exception e)
                 {
@@ -101,7 +105,7 @@ namespace Crawler.BL
                 information.Tag = tagsList;
 
                 information.OrganizerName =
-                    htmlInfo.DocumentNode.SelectSingleNode("//div[@class='sectioncontent']/ul/li/h5")?.InnerText ?? " ";
+                    htmlInfo.DocumentNode.SelectSingleNode("//div[@class='sectioncontent']/ul/li/h5")?.InnerText.Replace("&amp;", "and") ?? " ";
 
                 information.Organizer =
                     htmlInfo.DocumentNode.SelectSingleNode("//div[@class='sectioncontent']/ul/li/p/a")?
