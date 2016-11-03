@@ -39,7 +39,7 @@ namespace Crawler.BL
             Console.WriteLine("Search activities. Please wait");
             for (int i = 1; ; i++)
             {
-                html.LoadHtml(wClient.DownloadString(url + type + "?page=" + i));
+                html.LoadHtml(wClient.DownloadString(url + type + "?radius=infinity" + "&page=" + i));
                 var elements = html.DocumentNode.SelectNodes("//a[@data-asset-id]");
                 if (elements == null)
                 {
@@ -47,7 +47,8 @@ namespace Crawler.BL
                 }
                 foreach (var item in elements)
                 {
-                    elementList.Add(url + item.GetAttributeValue("href", "") + item.GetAttributeValue("data-asset-id", ""));
+                    elementList.Add(url + item.GetAttributeValue("href", "") +
+                                    item.GetAttributeValue("data-asset-id", ""));
                 }
             };
             
@@ -58,30 +59,42 @@ namespace Crawler.BL
             {
                 var tagsList = new List<string>();
                 var information = new Info();
-                htmlInfo.LoadHtml(wClient.DownloadString(item.Replace("http://www.activekids.com/","")));
+                try
+                {
+                    htmlInfo.LoadHtml(wClient.DownloadString(item.Replace("http://www.activekids.com/", "")));
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
 
                 information.Name =
                     htmlInfo.DocumentNode.SelectSingleNode("//div[@class='ed-details']/h1")?
-                        .InnerText.Replace("&amp;", "and") ?? " ";
+                        .InnerText.Replace("&amp;", "and").Replace(";", "and") ?? " ";
                 Console.WriteLine("Information about the event collection:" + information.Name);
-                
+
 
                 information.Date =
                     htmlInfo.DocumentNode.SelectSingleNode(
                         "//div[@class='ed-details']/div[@class='visible-desktop']/h5")?
-                        .InnerText ?? " ";
+                        .InnerText.Replace(";", "and") ?? " ";
                 
                 try
                 {
                     var adressName = htmlInfo.DocumentNode.SelectSingleNode(
-                        "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-name']")?
-                        .InnerText.Trim() ?? " ";
-                    var adress = htmlInfo.DocumentNode.SelectNodes("//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-text']/span");
+                        "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-name']")
+                        ?.InnerText.Trim().Replace(";", "and") ?? " ";
+                    var adress =
+                        htmlInfo.DocumentNode.SelectNodes(
+                            "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-text']/span");
                     information.Place = adressName.Replace("&nbsp;", "").Replace("&amp;", "and") + " ";
                     foreach (var str in adress)
                     {
                         information.Place = information.Place +
-                                            str.InnerText.Replace("&nbsp;", "").Replace("&amp;", "and") + " ";
+                                            str.InnerText.Replace("&nbsp;", "")
+                                                .Replace("&amp;", "and")
+                                                .Replace(";", "and") + " ";
                     }
                 }
                 catch (Exception e)
@@ -105,11 +118,13 @@ namespace Crawler.BL
                 information.Tag = tagsList;
 
                 information.OrganizerName =
-                    htmlInfo.DocumentNode.SelectSingleNode("//div[@class='sectioncontent']/ul/li/h5")?.InnerText.Replace("&amp;", "and") ?? " ";
+                    htmlInfo.DocumentNode.SelectSingleNode("//div[@class='sectioncontent']/ul/li/h5")?
+                        .InnerText.Replace("&amp;", "and")
+                        .Replace(";", "and") ?? " ";
 
                 information.Organizer =
                     htmlInfo.DocumentNode.SelectSingleNode("//div[@class='sectioncontent']/ul/li/p/a")?
-                        .GetAttributeValue("href", "") ?? " ";
+                        .GetAttributeValue("href", "").Replace(";", "and") ?? " ";
 
                 information.Url = item;
                 information.Category = type;
