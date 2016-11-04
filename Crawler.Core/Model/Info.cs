@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Crawler.Core
+namespace Crawler.Core.Model
 {
     public class Info
     {

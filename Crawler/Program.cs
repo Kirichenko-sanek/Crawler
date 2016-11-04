@@ -1,9 +1,7 @@
 ﻿using Castle.Windsor;
-using Crawler.BL;
 using Crawler.BL.CW;
 using Crawler.Controller;
-using Crawler.Interfaces;
-using Crawler.Interfaces.Manager;
+using Crawler.Core.Interfaces.Manager;
 
 namespace Crawler
 {

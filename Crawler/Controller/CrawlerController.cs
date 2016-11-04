@@ -1,5 +1,5 @@
 ﻿using System;
-using Crawler.Interfaces.Manager;
+using Crawler.Core.Interfaces.Manager;
 
 namespace Crawler.Controller
 {
@@ -14,9 +14,8 @@ namespace Crawler.Controller
 
         public void StartCrowler()
         {
-            Console.WriteLine("Performed data collection. Please wait");
-            var result = _manager.GetResponse("http://www.active.com/");
-            Console.WriteLine(result ? "Data saved" : "Error");
+            _manager.GetInfoActivComManager();
+            Console.WriteLine("End");
             Console.ReadKey();
         }
     }

@@ -40,8 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Info.cs" />
+    <Compile Include="Interfaces\Manager\IActivComManager.cs" />
+    <Compile Include="Interfaces\Manager\IManager.cs" />
+    <Compile Include="Interfaces\Repository\IRepository.cs" />
+    <Compile Include="Model\Info.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Result\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler", "Crawler\Crawler.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler.BL", "Crawler.BL\Crawler.BL.csproj", "{A7C5D28B-29A0-4D90-B14D-6CC28274716A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler.Interfaces", "Crawler.Interfaces\Crawler.Interfaces.csproj", "{1AF7AF2B-2B43-48DE-BB2B-BE34D26442EA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler.Model", "Crawler.Model\Crawler.Model.csproj", "{F5E9E919-67E3-4948-8E32-1A3597B6E83B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler.Core", "Crawler.Core\Crawler.Core.csproj", "{B50AFC09-939A-466A-A7F5-BCEEADE67DDC}"
 EndProject
 Global
@@ -27,14 +23,6 @@ Global
 		{A7C5D28B-29A0-4D90-B14D-6CC28274716A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7C5D28B-29A0-4D90-B14D-6CC28274716A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7C5D28B-29A0-4D90-B14D-6CC28274716A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1AF7AF2B-2B43-48DE-BB2B-BE34D26442EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AF7AF2B-2B43-48DE-BB2B-BE34D26442EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1AF7AF2B-2B43-48DE-BB2B-BE34D26442EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1AF7AF2B-2B43-48DE-BB2B-BE34D26442EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5E9E919-67E3-4948-8E32-1A3597B6E83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5E9E919-67E3-4948-8E32-1A3597B6E83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5E9E919-67E3-4948-8E32-1A3597B6E83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5E9E919-67E3-4948-8E32-1A3597B6E83B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B50AFC09-939A-466A-A7F5-BCEEADE67DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B50AFC09-939A-466A-A7F5-BCEEADE67DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B50AFC09-939A-466A-A7F5-BCEEADE67DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU

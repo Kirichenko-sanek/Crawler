@@ -53,26 +53,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CW\AdminInstaller.cs" />
-    <Compile Include="Manager.cs" />
+    <Compile Include="Manager\ActivComManager.cs" />
+    <Compile Include="Manager\Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Crawler.Core\Crawler.Core.csproj">
       <Project>{b50afc09-939a-466a-a7f5-bceeade67ddc}</Project>
       <Name>Crawler.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Crawler.Interfaces\Crawler.Interfaces.csproj">
-      <Project>{1af7af2b-2b43-48de-bb2b-be34d26442ea}</Project>
-      <Name>Crawler.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Crawler.Model\Crawler.Model.csproj">
-      <Project>{f5e9e919-67e3-4948-8e32-1a3597b6e83b}</Project>
-      <Name>Crawler.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
