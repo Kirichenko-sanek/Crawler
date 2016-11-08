@@ -12,5 +12,6 @@ namespace Crawler.Core.Model
         public string OrganizerName { get; set; }
         public string Organizer { get; set; }
         public string Url { get; set; }
+        public string Email { get; set; }
     }
 }

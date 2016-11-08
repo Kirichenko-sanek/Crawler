@@ -14,7 +14,7 @@ namespace Crawler.Controller
 
         public void StartCrowler()
         {
-            _manager.GetInfoActivComManager();
+            //_manager.GetInfoActivComManager();
             Console.WriteLine("End");
             Console.ReadKey();
         }

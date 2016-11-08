@@ -5,11 +5,13 @@ namespace Crawler.BL.Repository
 {
     public class Repository : IRepository
     {
-        public void WriteToFile(string info, string fileName)
+        public void WriteToFile(string info, string fileName,string folder)
         {
-            using (StreamWriter theWriter = new StreamWriter(@"\Work\Crawler\Crawler.Core\Result\" + fileName + ".csv"))
+            var str = folder +"/" + fileName + ".csv";
+            using (StreamWriter theWriter = new StreamWriter(@"" + str))
             {
                 theWriter.Write(info);
+                theWriter.Close();
             }
         }
     }

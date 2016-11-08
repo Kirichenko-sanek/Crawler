@@ -12,10 +12,22 @@ namespace Crawler.BL.Manager
             _activComManager = activComManager;
         }
 
-        public void GetInfoActivComManager()
+        public void GetInfoActivComManagerRunning(string folder)
         {
-            Parallel.Invoke(_activComManager.GetRunning, _activComManager.GetCycling, _activComManager.GetTriathlon);
+            _activComManager.GetRunning(folder);
+
         }
 
+        public void GetInfoActivComManagerCycling(string folder)
+        {
+            _activComManager.GetCycling(folder);
+
+        }
+
+        public void GetInfoActivComManagerTriathlon(string folder)
+        {
+            _activComManager.GetTriathlon(folder);
+
+        }
     }
 }

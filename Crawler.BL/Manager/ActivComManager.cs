@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Crawler.Core.Interfaces.Manager;
 using Crawler.Core.Interfaces.Repository;
@@ -18,31 +20,31 @@ namespace Crawler.BL.Manager
             _repository = repository;
         }
 
-        public void GetTriathlon()
+        public void GetTriathlon(string folder)
         {
-            GetInfoActivCom("triathlon");
+            GetInfoActivCom("triathlon", folder);
         }
 
-        public void GetCycling()
+        public void GetCycling(string folder)
         {
-            GetInfoActivCom("cycling");
+            GetInfoActivCom("cycling", folder);
         }
 
-        public void GetRunning()
+        public void GetRunning(string folder)
         {
-            GetInfoActivCom("running");
+            GetInfoActivCom("running", folder);
         }
 
-        public void GetInfoActivCom(string type)
+        public void GetInfoActivCom(string type, string folder)
         {
-            Console.WriteLine("Search events. Please wait(" + type + ")");
+            //Console.WriteLine("Search events. Please wait(" + type + ")");
             var pages = GetListPages(type);
-            Console.WriteLine("Events found(" + type + ")");
+            //Console.WriteLine("Events found(" + type + ")");
             var info = ParsePages(pages, type);
-            Console.WriteLine("Data processing(" + type + ")");
+            //Console.WriteLine("Data processing(" + type + ")");
             var stringInfo = ConvertInfoToString(info);
-            _repository.WriteToFile(stringInfo, type);
-            Console.WriteLine("Data save(" + type + ")");
+            _repository.WriteToFile(stringInfo, type, folder);
+            //Console.WriteLine("Data save(" + type + ")");
         }
 
         public List<string> GetListPages(string type)
@@ -111,44 +113,18 @@ namespace Crawler.BL.Manager
                         return;
                     }
 
-                    information.Name =
-                        htmlInfo.DocumentNode.SelectSingleNode("//div[@class='ed-details']/h1")?
-                            .InnerText.Replace("&amp;", "and").Replace(";", "and") ?? " ";
-                    Console.WriteLine("Information about the event collection:" + information.Name);
-
-                    information.Date =
-                        htmlInfo.DocumentNode.SelectSingleNode(
-                            "//div[@class='ed-details']/div[@class='visible-desktop']/h5")?
-                            .InnerText.Replace(";", "and") ?? " ";
-
-                    try
-                    {
-                        var adressName = htmlInfo.DocumentNode.SelectSingleNode(
-                            "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-name']")
-                            ?.InnerText.Trim().Replace(";", "and") ?? " ";
-                        var adress =
-                            htmlInfo.DocumentNode.SelectNodes(
-                                "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-text']/span");
-                        information.Place = adressName.Replace("&nbsp;", "").Replace("&amp;", "and") + " ";
-                        foreach (var str in adress)
-                        {
-                            information.Place = information.Place +
-                                                str.InnerText.Replace("&nbsp;", "")
-                                                    .Replace("&amp;", "and")
-                                                    .Replace(";", "and") + " ";
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        information.Place = " ";
-                    }
+                    information.Name = FormatName(htmlInfo);
+                    
+                    //Console.WriteLine("Information about the event collection:" + information.Name);
+                    information.Date = FormatDate(htmlInfo).Replace(",", ".");
+                    information.Place = FormatPlace(htmlInfo);
 
                     try
                     {
                         var tags = htmlInfo.DocumentNode.SelectNodes("//ul[@class='inline breadcrumb']/li/p/a");
                         foreach (var tag in tags)
                         {
-                            tagsList.Add(tag.InnerText);
+                            tagsList.Add(tag.InnerText.Replace(",", "_"));
                         }
 
                     }
@@ -161,11 +137,29 @@ namespace Crawler.BL.Manager
                     information.OrganizerName =
                         htmlInfo.DocumentNode.SelectSingleNode("//div[@class='sectioncontent']/ul/li/h5")?
                             .InnerText.Replace("&amp;", "and")
-                            .Replace(";", "and") ?? " ";
+                            .Replace(",", " ")
+                            .Replace("&#x27;", "") ?? " ";
+             
 
                     information.Organizer =
                         htmlInfo.DocumentNode.SelectSingleNode("//div[@class='sectioncontent']/ul/li/p/a")?
-                            .GetAttributeValue("href", "").Replace(";", "and") ?? " ";
+                            .GetAttributeValue("href", "").Replace(",", " ") ?? " ";
+                    if (information.Organizer != " ")
+                    {
+                        if (information.Organizer.Contains("www.facebook.com") == false)
+                        {
+                            var index = information.Organizer.IndexOf('/', 9);
+                            if (index != -1)
+                            {
+                                information.Organizer = information.Organizer.Remove(index);
+                            }
+                        }     
+                        information.Email = GetOrganizerEmail(information.Organizer);
+                    }
+                    else
+                    {
+                        information.Email = " ";
+                    }
 
                     information.Url = item;
                     information.Category = type;
@@ -180,19 +174,21 @@ namespace Crawler.BL.Manager
         {
             System.Text.StringBuilder theBuilder = new System.Text.StringBuilder();
             theBuilder.Append("Event Name");
-            theBuilder.Append(";");
+            theBuilder.Append(",");
             theBuilder.Append("Event Date");
-            theBuilder.Append(";");
+            theBuilder.Append(",");
             theBuilder.Append("Event Location");
-            theBuilder.Append(";");
+            theBuilder.Append(",");
             theBuilder.Append("Event Category");
-            theBuilder.Append(";");
+            theBuilder.Append(",");
             theBuilder.Append("Event Type");
-            theBuilder.Append(";");
+            theBuilder.Append(",");
             theBuilder.Append("Organizing Company");
-            theBuilder.Append(";");
+            theBuilder.Append(",");
+            theBuilder.Append("Email");
+            theBuilder.Append(",");
             theBuilder.Append("Company Website");
-            theBuilder.Append(";");
+            theBuilder.Append(",");
             theBuilder.Append("Event Url");            
             theBuilder.Append("\n");
             foreach (var item in info)
@@ -200,23 +196,25 @@ namespace Crawler.BL.Manager
                 string str = "";
 
                 theBuilder.Append(item.Name);
-                theBuilder.Append(";");
+                theBuilder.Append(",");
                 theBuilder.Append(item.Date);
-                theBuilder.Append(";");
+                theBuilder.Append(",");
                 theBuilder.Append(item.Place);
-                theBuilder.Append(";");
+                theBuilder.Append(",");
                 theBuilder.Append(item.Category);
-                theBuilder.Append(";");
+                theBuilder.Append(",");
                 foreach (var tag in item.Tag)
                 {
                     str = str + " " + tag;
                 }
                 theBuilder.Append(str);
-                theBuilder.Append(";");
+                theBuilder.Append(",");
                 theBuilder.Append(item.OrganizerName);
-                theBuilder.Append(";");
+                theBuilder.Append(",");
+                theBuilder.Append(item.Email);
+                theBuilder.Append(",");
                 theBuilder.Append(item.Organizer);
-                theBuilder.Append(";");
+                theBuilder.Append(",");
                 theBuilder.Append(item.Url);
                 theBuilder.Append("\n");
 
@@ -224,5 +222,172 @@ namespace Crawler.BL.Manager
             return theBuilder.ToString();
         }
 
+        public string GetOrganizerEmail(string organizer)
+        {
+
+            try
+            {
+                using (var wClientOrganizer = new WebClient())
+                {
+                    var htmlOrganizer = new HtmlDocument();
+                    htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer));
+                    var regex = new Regex(@"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\b");
+                    Match match = regex.Match(htmlOrganizer.DocumentNode.InnerText);
+                    if (match.Value != "")
+                    {
+                        return match.Value;
+                    }
+                    var elements = htmlOrganizer.DocumentNode.SelectNodes("//a[@href]");
+
+                    if (elements != null)
+                    {
+                        string str = " ";
+                        foreach (var item in elements)
+                        {
+                            if (item.GetAttributeValue("href", "").Contains("contact"))
+                            {
+                                str = item.GetAttributeValue("href", "");
+                                break;
+                            }
+                        }
+                        if (str == " ")
+                        {
+                            foreach (var item in elements)
+                            {
+                                if (item.GetAttributeValue("href", "").Contains("/"))
+                                {
+                                    str = item.GetAttributeValue("href", "");
+                                    break;
+                                }
+                            }
+                        }
+                        if (str == " ")
+                        {
+                            foreach (var item in elements)
+                            {
+                                if (item.GetAttributeValue("href", "").Contains("about"))
+                                {
+                                    str = item.GetAttributeValue("href", "");
+                                    break;
+                                }
+                            }
+                        }
+                        if (str != " ")
+                        {
+                            using (var wClientContact = new WebClient())
+                            {
+                                var htmlContact = new HtmlDocument();
+                                try
+                                {
+                                    htmlContact.LoadHtml(wClientContact.DownloadString(str));
+                                }
+                                catch (Exception)
+                                {
+                                    htmlContact.LoadHtml(wClientContact.DownloadString(organizer + str));
+                                }
+
+                                match = regex.Match(htmlOrganizer.DocumentNode.InnerText);
+                                return match.Value;
+                            }
+                        }
+                        return " ";
+                    }
+                    return " ";
+                }
+   
+            }
+            catch (Exception)
+            {
+                return " ";
+            } 
+        }
+
+        public string FormatName(HtmlDocument html)
+        {
+            return html.DocumentNode.SelectSingleNode("//div[@class='ed-details']/h1")?
+                .InnerText.Replace("&amp;", "and").Replace(",", ".") ?? " ";
+        }
+
+        public string FormatDate(HtmlDocument html)
+        {
+            var date =
+                html.DocumentNode.SelectSingleNode(
+                    "//div[@class='ed-details']/div[@class='visible-desktop']/h5")?
+                    .InnerText ?? " ";
+            if (date == " ") return date;
+            if (date.Contains("-"))
+            {
+                var start = date.Substring(0, date.IndexOf('-') -1);
+                var end = date.Substring(date.IndexOf('-') + 1);
+                var index = start.IndexOf('@');
+                start = Convert.ToString(
+                    index != -1
+                        ? Convert.ToDateTime(start.Remove(index)).Date
+                        : Convert.ToDateTime(start).Date,
+                    CultureInfo.InvariantCulture).Replace("00:00:00", "").Replace("0:00:00", "");
+                index = end.IndexOf('@');
+                end = Convert.ToString(
+                    index != -1
+                        ? Convert.ToDateTime(end.Remove(index)).Date
+                        : Convert.ToDateTime(end).Date,
+                    CultureInfo.InvariantCulture).Replace("00:00:00", "").Replace("0:00:00", "");
+
+                return start + " - " + end;
+            }
+            else
+            {
+                var index = date.IndexOf('@');
+                if (index != -1)
+                {
+                    return
+                        Convert.ToString(
+                            Convert.ToDateTime(date.Remove(index)).Date, CultureInfo.InvariantCulture)
+                            .Replace("00:00:00", "")
+                            .Replace("0:00:00", "");
+                }
+                return Convert.ToString(
+                    Convert.ToDateTime(date).Date, CultureInfo.InvariantCulture)
+                    .Replace("00:00:00", "")
+                    .Replace("0:00:00", "");
+            }
+        }
+
+        public string FormatPlace(HtmlDocument html)
+        {
+            try
+            {
+
+                var addressName = html.DocumentNode.SelectSingleNode(
+                    "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-name']")
+                    ?.InnerText.Trim().Replace(",", " ") ?? "";
+
+                if (addressName.Contains("-"))
+                {
+                    addressName = addressName.Substring(addressName.IndexOf('-') + 1);
+                }
+                var address =
+                    html.DocumentNode.SelectNodes(
+                        "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-text']/span");
+
+
+                var add = "";
+                foreach (var str in address)
+                {
+                    add = add + str.InnerText.Replace("&nbsp;", "")
+                                            .Replace("&amp;", "and")
+                                            .Replace(",", " ") + " ";
+                }
+                if (addressName == "")
+                {
+                    return add;
+                }
+                return addressName + "; " + add;
+
+            }
+            catch (Exception)
+            {
+                return " ";
+            }
+        }
     }
 }

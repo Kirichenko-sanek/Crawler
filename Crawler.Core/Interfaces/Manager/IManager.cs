@@ -2,6 +2,8 @@
 {
     public interface IManager
     {
-        void GetInfoActivComManager();
+        void GetInfoActivComManagerRunning(string folder);
+        void GetInfoActivComManagerCycling(string folder);
+        void GetInfoActivComManagerTriathlon(string folder);
     }
 }
