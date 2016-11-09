@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Crawler.Core.Interfaces.Manager;
+﻿using Crawler.Core.Interfaces.Manager;
 
 namespace Crawler.BL.Manager
 {

@@ -230,10 +230,35 @@ namespace Crawler.BL.Manager
                 using (var wClientOrganizer = new WebClient())
                 {
                     var htmlOrganizer = new HtmlDocument();
-                    htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer));
+                    try
+                    {
+                        htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer));
+                    }
+                    catch (Exception)
+                    {
+                        try
+                        {
+                            htmlOrganizer.LoadHtml(
+                                wClientOrganizer.DownloadString(organizer.Replace("https://", "").Replace("http://", "")));
+                        }
+                        catch (Exception)
+                        {
+                            try
+                            {
+                                htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer + "/site/"));
+                            }
+                            catch (Exception)
+                            {
+                                htmlOrganizer.LoadHtml(
+                                    wClientOrganizer.DownloadString(
+                                        organizer.Replace("https://", "").Replace("http://", "") + "/site/"));
+                            }
+                        }
+                    }
+                    
                     var regex = new Regex(@"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\b");
                     Match match = regex.Match(htmlOrganizer.DocumentNode.InnerText);
-                    if (match.Value != "")
+                    if (match.Success)
                     {
                         return match.Value;
                     }
@@ -241,52 +266,48 @@ namespace Crawler.BL.Manager
 
                     if (elements != null)
                     {
-                        string str = " ";
+                        List<string> str = new List<string>();
                         foreach (var item in elements)
                         {
                             if (item.GetAttributeValue("href", "").Contains("contact"))
                             {
-                                str = item.GetAttributeValue("href", "");
-                                break;
+                                str.Add(item.GetAttributeValue("href", ""));
+                                
                             }
-                        }
-                        if (str == " ")
-                        {
-                            foreach (var item in elements)
+                            if (item.GetAttributeValue("href", "").Contains("about"))
                             {
-                                if (item.GetAttributeValue("href", "").Contains("/"))
-                                {
-                                    str = item.GetAttributeValue("href", "");
-                                    break;
-                                }
+                                str.Add(item.GetAttributeValue("href", ""));
                             }
                         }
-                        if (str == " ")
-                        {
-                            foreach (var item in elements)
-                            {
-                                if (item.GetAttributeValue("href", "").Contains("about"))
-                                {
-                                    str = item.GetAttributeValue("href", "");
-                                    break;
-                                }
-                            }
-                        }
-                        if (str != " ")
+                        if (str.Count != 0)
                         {
                             using (var wClientContact = new WebClient())
                             {
                                 var htmlContact = new HtmlDocument();
-                                try
+                                foreach (var item in str)
                                 {
-                                    htmlContact.LoadHtml(wClientContact.DownloadString(str));
-                                }
-                                catch (Exception)
-                                {
-                                    htmlContact.LoadHtml(wClientContact.DownloadString(organizer + str));
-                                }
+                                    try
+                                    {
+                                        htmlContact.LoadHtml(wClientContact.DownloadString(item));
+                                    }
+                                    catch (Exception)
+                                    {
+                                        try
+                                        {
+                                            htmlContact.LoadHtml(wClientContact.DownloadString(organizer + item));
+                                        }
+                                        catch (Exception)
+                                        {
+                                            htmlContact.LoadHtml(wClientContact.DownloadString(organizer + "/" + item));
+                                        }
 
-                                match = regex.Match(htmlOrganizer.DocumentNode.InnerText);
+                                    }
+                                    match = regex.Match(htmlContact.DocumentNode.InnerText);
+                                    if (match.Success)
+                                    {
+                                        break;
+                                    }
+                                }
                                 return match.Value;
                             }
                         }
