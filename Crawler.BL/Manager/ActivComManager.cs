@@ -227,6 +227,7 @@ namespace Crawler.BL.Manager
 
             try
             {
+                List<string> emailsList = new List<string>();
                 using (var wClientOrganizer = new WebClient())
                 {
                     var htmlOrganizer = new HtmlDocument();
@@ -257,10 +258,21 @@ namespace Crawler.BL.Manager
                     }
                     
                     var regex = new Regex(@"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\b");
-                    Match match = regex.Match(htmlOrganizer.DocumentNode.InnerText);
-                    if (match.Success)
-                    {
-                        return match.Value;
+                    var match = regex.Matches(htmlOrganizer.DocumentNode.InnerText);
+                    if (match.Count != 0)
+                    {                     
+                        foreach (Match item in match)
+                        {
+                            if (emailsList.Count != 0)
+                            {
+                                if (emailsList.Contains(item.Value))
+                                {
+                                    break;
+                                }
+                            }
+                            emailsList.Add(item.Value);
+                        }
+                        
                     }
                     var elements = htmlOrganizer.DocumentNode.SelectNodes("//a[@href]");
 
@@ -284,34 +296,48 @@ namespace Crawler.BL.Manager
                             using (var wClientContact = new WebClient())
                             {
                                 var htmlContact = new HtmlDocument();
-                                foreach (var item in str)
+                                foreach (var cout in str)
                                 {
                                     try
                                     {
-                                        htmlContact.LoadHtml(wClientContact.DownloadString(item));
+                                        htmlContact.LoadHtml(wClientContact.DownloadString(cout));
                                     }
                                     catch (Exception)
                                     {
                                         try
                                         {
-                                            htmlContact.LoadHtml(wClientContact.DownloadString(organizer + item));
+                                            htmlContact.LoadHtml(wClientContact.DownloadString(organizer + cout));
                                         }
                                         catch (Exception)
                                         {
-                                            htmlContact.LoadHtml(wClientContact.DownloadString(organizer + "/" + item));
+                                            htmlContact.LoadHtml(wClientContact.DownloadString(organizer + "/" + cout));
                                         }
 
                                     }
-                                    match = regex.Match(htmlContact.DocumentNode.InnerText);
-                                    if (match.Success)
+                                    match = regex.Matches(htmlContact.DocumentNode.InnerText);
+                                    if (match.Count != 0)
                                     {
-                                        break;
+                                        foreach (Match item in match)
+                                        {
+                                            if (emailsList.Count != 0)
+                                            {
+                                                if (emailsList.Contains(item.Value))
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                            emailsList.Add(item.Value);
+                                        }
+
                                     }
                                 }
-                                return match.Value;
                             }
                         }
-                        return " ";
+                        
+                    }
+                    if(emailsList.Count != 0)
+                    {
+                        return string.Join("; ", emailsList.ToArray());
                     }
                     return " ";
                 }
