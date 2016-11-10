@@ -41,9 +41,9 @@
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(325, 41);
+            this.Start.Location = new System.Drawing.Point(160, 77);
             this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(75, 23);
+            this.Start.Size = new System.Drawing.Size(174, 23);
             this.Start.TabIndex = 0;
             this.Start.Text = "Start";
             this.Start.UseVisualStyleBackColor = true;
@@ -67,12 +67,12 @@
             this.groupBox1.Controls.Add(this.triathlon);
             this.groupBox1.Controls.Add(this.cucling);
             this.groupBox1.Controls.Add(this.running);
-            this.groupBox1.Location = new System.Drawing.Point(27, 59);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(142, 100);
+            this.groupBox1.Size = new System.Drawing.Size(142, 88);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "active.com";
             // 
             // triathlon
             // 
@@ -98,18 +98,18 @@
             // 
             // folderButton
             // 
-            this.folderButton.Location = new System.Drawing.Point(390, 225);
+            this.folderButton.Location = new System.Drawing.Point(160, 28);
             this.folderButton.Name = "folderButton";
-            this.folderButton.Size = new System.Drawing.Size(75, 23);
+            this.folderButton.Size = new System.Drawing.Size(174, 23);
             this.folderButton.TabIndex = 3;
-            this.folderButton.Text = "folderButton";
+            this.folderButton.Text = "Select folder";
             this.folderButton.UseVisualStyleBackColor = true;
             this.folderButton.Click += new System.EventHandler(this.folderButton_Click);
             // 
             // folder
             // 
             this.folder.AutoSize = true;
-            this.folder.Location = new System.Drawing.Point(33, 235);
+            this.folder.Location = new System.Drawing.Point(15, 111);
             this.folder.Name = "folder";
             this.folder.Size = new System.Drawing.Size(35, 13);
             this.folder.TabIndex = 4;
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 343);
+            this.ClientSize = new System.Drawing.Size(348, 133);
             this.Controls.Add(this.folder);
             this.Controls.Add(this.folderButton);
             this.Controls.Add(this.groupBox1);

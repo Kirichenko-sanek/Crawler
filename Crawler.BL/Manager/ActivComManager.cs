@@ -116,7 +116,7 @@ namespace Crawler.BL.Manager
                     information.Name = FormatName(htmlInfo);
                     
                     //Console.WriteLine("Information about the event collection:" + information.Name);
-                    information.Date = FormatDate(htmlInfo).Replace(",", ".");
+                    information.Date = FormatDate(htmlInfo).Replace(",", "/");
                     information.Place = FormatPlace(htmlInfo);
 
                     try
@@ -230,33 +230,21 @@ namespace Crawler.BL.Manager
                 List<string> emailsList = new List<string>();
                 using (var wClientOrganizer = new WebClient())
                 {
+                    wClientOrganizer.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+                    wClientOrganizer.Headers.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
+
                     var htmlOrganizer = new HtmlDocument();
                     try
                     {
-                        htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer));
+                        htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer + "/"));
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        try
-                        {
-                            htmlOrganizer.LoadHtml(
-                                wClientOrganizer.DownloadString(organizer.Replace("https://", "").Replace("http://", "")));
-                        }
-                        catch (Exception)
-                        {
-                            try
-                            {
-                                htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer + "/site/"));
-                            }
-                            catch (Exception)
-                            {
-                                htmlOrganizer.LoadHtml(
-                                    wClientOrganizer.DownloadString(
-                                        organizer.Replace("https://", "").Replace("http://", "") + "/site/"));
-                            }
-                        }
+
+                        htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer + "/site/"));
+
                     }
-                    
+
                     var regex = new Regex(@"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\b");
                     var match = regex.Matches(htmlOrganizer.DocumentNode.InnerText);
                     if (match.Count != 0)
@@ -284,7 +272,6 @@ namespace Crawler.BL.Manager
                             if (item.GetAttributeValue("href", "").Contains("contact"))
                             {
                                 str.Add(item.GetAttributeValue("href", ""));
-                                
                             }
                             if (item.GetAttributeValue("href", "").Contains("about"))
                             {
@@ -295,6 +282,8 @@ namespace Crawler.BL.Manager
                         {
                             using (var wClientContact = new WebClient())
                             {
+                                wClientContact.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+                                wClientContact.Headers.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
                                 var htmlContact = new HtmlDocument();
                                 foreach (var cout in str)
                                 {
@@ -328,7 +317,6 @@ namespace Crawler.BL.Manager
                                             }
                                             emailsList.Add(item.Value);
                                         }
-
                                     }
                                 }
                             }
@@ -343,7 +331,7 @@ namespace Crawler.BL.Manager
                 }
    
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return " ";
             } 
