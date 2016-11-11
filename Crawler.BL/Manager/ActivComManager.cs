@@ -234,19 +234,18 @@ namespace Crawler.BL.Manager
                     wClientOrganizer.Headers.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
 
                     var htmlOrganizer = new HtmlDocument();
+                    var regex = new Regex(@"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\b");
+
+                    MatchCollection match;
                     try
                     {
-                        htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer + "/"));
+                        htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer + "/site/"));
                     }
                     catch (Exception e)
                     {
-
-                        htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer + "/site/"));
-
-                    }
-
-                    var regex = new Regex(@"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\b");
-                    var match = regex.Matches(htmlOrganizer.DocumentNode.InnerText);
+                        htmlOrganizer.LoadHtml(wClientOrganizer.DownloadString(organizer + "/"));
+                    }        
+                    match = regex.Matches(htmlOrganizer.DocumentNode.InnerText);
                     if (match.Count != 0)
                     {                     
                         foreach (Match item in match)
