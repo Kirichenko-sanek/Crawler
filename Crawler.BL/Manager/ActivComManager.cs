@@ -230,8 +230,9 @@ namespace Crawler.BL.Manager
                 List<string> emailsList = new List<string>();
                 using (var wClientOrganizer = new WebClient())
                 {
-                    wClientOrganizer.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-                    wClientOrganizer.Headers.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
+                    wClientOrganizer.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36");
+                    wClientOrganizer.Headers.Add("Content-Type", "text/html, charset=utf-8");
+                    wClientOrganizer.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 
                     var htmlOrganizer = new HtmlDocument();
                     var regex = new Regex(@"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\b");
@@ -281,8 +282,10 @@ namespace Crawler.BL.Manager
                         {
                             using (var wClientContact = new WebClient())
                             {
-                                wClientContact.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-                                wClientContact.Headers.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
+                                wClientContact.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36");
+                                wClientContact.Headers.Add("Content-Type", "text/html, charset=utf-8");
+                                wClientContact.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+
                                 var htmlContact = new HtmlDocument();
                                 foreach (var cout in str)
                                 {
