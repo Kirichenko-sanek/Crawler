@@ -21,8 +21,8 @@ namespace Crawler.BL.Manager
         public ActivComManager(IRepository repository)
         {
             _repository = repository;
-            ProgresMax = ProgresMax;
-            ProgresNow = ProgresNow;
+            ProgresMax = 0;
+            ProgresNow = 0;
         }
 
         public void GetTriathlon(string folder)
@@ -97,12 +97,16 @@ namespace Crawler.BL.Manager
 
         public void GetInfoActivCom(string type, string folder)
         {
+            ProgresMax = 0;
+            ProgresNow = 0;
             var pages = GetListPages(type);
-            ProgresMax = pages.Count + 15;
+            ProgresNow = ProgresMax;
+            ProgresMax = ProgresMax +  pages.Count + 15;
             var info = ParsePages(pages, type);
 
             var stringInfo = ConvertInfoToString(info);
             _repository.WriteToFile(stringInfo, type, folder);
+            ProgresNow = ProgresMax;
         }
 
         public List<string> GetListPages(string type)
@@ -118,6 +122,7 @@ namespace Crawler.BL.Manager
             if (pages != null)
             {
                 cout = Convert.ToInt32((pages[pages.Count - 1]).InnerText);
+                ProgresMax = cout + cout*11;
             }
             elementList.Clear();
 
@@ -145,6 +150,7 @@ namespace Crawler.BL.Manager
                     {
                         elementList.Add("http://www.active.com/" + item.GetAttributeValue("href", ""));
                     }
+                    ProgresNow++;
                 }
             });
 

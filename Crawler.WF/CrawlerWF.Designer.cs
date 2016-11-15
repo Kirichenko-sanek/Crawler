@@ -31,6 +31,17 @@
             this.Start = new System.Windows.Forms.Button();
             this.running = new System.Windows.Forms.RadioButton();
             this.activGroupBox = new System.Windows.Forms.GroupBox();
+            this.winterSports = new System.Windows.Forms.RadioButton();
+            this.volleyball = new System.Windows.Forms.RadioButton();
+            this.tennis = new System.Windows.Forms.RadioButton();
+            this.swimming = new System.Windows.Forms.RadioButton();
+            this.softball = new System.Windows.Forms.RadioButton();
+            this.soccer = new System.Windows.Forms.RadioButton();
+            this.martialArts = new System.Windows.Forms.RadioButton();
+            this.golf = new System.Windows.Forms.RadioButton();
+            this.football = new System.Windows.Forms.RadioButton();
+            this.basketball = new System.Windows.Forms.RadioButton();
+            this.baseball = new System.Windows.Forms.RadioButton();
             this.triathlon = new System.Windows.Forms.RadioButton();
             this.cucling = new System.Windows.Forms.RadioButton();
             this.folderButton = new System.Windows.Forms.Button();
@@ -38,17 +49,6 @@
             this.fileDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.progressBarResult = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.baseball = new System.Windows.Forms.RadioButton();
-            this.basketball = new System.Windows.Forms.RadioButton();
-            this.football = new System.Windows.Forms.RadioButton();
-            this.golf = new System.Windows.Forms.RadioButton();
-            this.martialArts = new System.Windows.Forms.RadioButton();
-            this.soccer = new System.Windows.Forms.RadioButton();
-            this.softball = new System.Windows.Forms.RadioButton();
-            this.swimming = new System.Windows.Forms.RadioButton();
-            this.tennis = new System.Windows.Forms.RadioButton();
-            this.volleyball = new System.Windows.Forms.RadioButton();
-            this.winterSports = new System.Windows.Forms.RadioButton();
             this.activGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +97,127 @@
             this.activGroupBox.TabIndex = 2;
             this.activGroupBox.TabStop = false;
             this.activGroupBox.Text = "active.com";
+            // 
+            // winterSports
+            // 
+            this.winterSports.AutoSize = true;
+            this.winterSports.Location = new System.Drawing.Point(202, 111);
+            this.winterSports.Name = "winterSports";
+            this.winterSports.Size = new System.Drawing.Size(89, 17);
+            this.winterSports.TabIndex = 14;
+            this.winterSports.Text = "Winter Sports";
+            this.winterSports.UseVisualStyleBackColor = true;
+            this.winterSports.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // volleyball
+            // 
+            this.volleyball.AutoSize = true;
+            this.volleyball.Location = new System.Drawing.Point(202, 88);
+            this.volleyball.Name = "volleyball";
+            this.volleyball.Size = new System.Drawing.Size(69, 17);
+            this.volleyball.TabIndex = 13;
+            this.volleyball.Text = "Volleyball";
+            this.volleyball.UseVisualStyleBackColor = true;
+            this.volleyball.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // tennis
+            // 
+            this.tennis.AutoSize = true;
+            this.tennis.Location = new System.Drawing.Point(202, 65);
+            this.tennis.Name = "tennis";
+            this.tennis.Size = new System.Drawing.Size(57, 17);
+            this.tennis.TabIndex = 12;
+            this.tennis.Text = "Tennis";
+            this.tennis.UseVisualStyleBackColor = true;
+            this.tennis.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // swimming
+            // 
+            this.swimming.AutoSize = true;
+            this.swimming.Location = new System.Drawing.Point(202, 42);
+            this.swimming.Name = "swimming";
+            this.swimming.Size = new System.Drawing.Size(72, 17);
+            this.swimming.TabIndex = 11;
+            this.swimming.Text = "Swimming";
+            this.swimming.UseVisualStyleBackColor = true;
+            this.swimming.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // softball
+            // 
+            this.softball.AutoSize = true;
+            this.softball.Location = new System.Drawing.Point(202, 19);
+            this.softball.Name = "softball";
+            this.softball.Size = new System.Drawing.Size(60, 17);
+            this.softball.TabIndex = 10;
+            this.softball.Text = "Softball";
+            this.softball.UseVisualStyleBackColor = true;
+            this.softball.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // soccer
+            // 
+            this.soccer.AutoSize = true;
+            this.soccer.Location = new System.Drawing.Point(109, 134);
+            this.soccer.Name = "soccer";
+            this.soccer.Size = new System.Drawing.Size(59, 17);
+            this.soccer.TabIndex = 9;
+            this.soccer.Text = "Soccer";
+            this.soccer.UseVisualStyleBackColor = true;
+            this.soccer.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // martialArts
+            // 
+            this.martialArts.AutoSize = true;
+            this.martialArts.Location = new System.Drawing.Point(109, 111);
+            this.martialArts.Name = "martialArts";
+            this.martialArts.Size = new System.Drawing.Size(77, 17);
+            this.martialArts.TabIndex = 8;
+            this.martialArts.Text = "Martial Arts";
+            this.martialArts.UseVisualStyleBackColor = true;
+            this.martialArts.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // golf
+            // 
+            this.golf.AutoSize = true;
+            this.golf.Location = new System.Drawing.Point(109, 88);
+            this.golf.Name = "golf";
+            this.golf.Size = new System.Drawing.Size(44, 17);
+            this.golf.TabIndex = 7;
+            this.golf.Text = "Golf";
+            this.golf.UseVisualStyleBackColor = true;
+            this.golf.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // football
+            // 
+            this.football.AutoSize = true;
+            this.football.Location = new System.Drawing.Point(109, 65);
+            this.football.Name = "football";
+            this.football.Size = new System.Drawing.Size(62, 17);
+            this.football.TabIndex = 6;
+            this.football.Text = "Football";
+            this.football.UseVisualStyleBackColor = true;
+            this.football.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // basketball
+            // 
+            this.basketball.AutoSize = true;
+            this.basketball.Location = new System.Drawing.Point(109, 42);
+            this.basketball.Name = "basketball";
+            this.basketball.Size = new System.Drawing.Size(74, 17);
+            this.basketball.TabIndex = 5;
+            this.basketball.Text = "Basketball";
+            this.basketball.UseVisualStyleBackColor = true;
+            this.basketball.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // baseball
+            // 
+            this.baseball.AutoSize = true;
+            this.baseball.Location = new System.Drawing.Point(109, 19);
+            this.baseball.Name = "baseball";
+            this.baseball.Size = new System.Drawing.Size(65, 17);
+            this.baseball.TabIndex = 4;
+            this.baseball.Text = "Baseball";
+            this.baseball.UseVisualStyleBackColor = true;
+            this.baseball.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // triathlon
             // 
@@ -150,127 +271,7 @@
             // 
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
-            // 
-            // baseball
-            // 
-            this.baseball.AutoSize = true;
-            this.baseball.Location = new System.Drawing.Point(109, 19);
-            this.baseball.Name = "baseball";
-            this.baseball.Size = new System.Drawing.Size(65, 17);
-            this.baseball.TabIndex = 4;
-            this.baseball.Text = "Baseball";
-            this.baseball.UseVisualStyleBackColor = true;
-            this.baseball.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // basketball
-            // 
-            this.basketball.AutoSize = true;
-            this.basketball.Location = new System.Drawing.Point(109, 42);
-            this.basketball.Name = "basketball";
-            this.basketball.Size = new System.Drawing.Size(74, 17);
-            this.basketball.TabIndex = 5;
-            this.basketball.Text = "Basketball";
-            this.basketball.UseVisualStyleBackColor = true;
-            this.basketball.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // football
-            // 
-            this.football.AutoSize = true;
-            this.football.Location = new System.Drawing.Point(109, 65);
-            this.football.Name = "football";
-            this.football.Size = new System.Drawing.Size(62, 17);
-            this.football.TabIndex = 6;
-            this.football.Text = "Football";
-            this.football.UseVisualStyleBackColor = true;
-            this.football.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // golf
-            // 
-            this.golf.AutoSize = true;
-            this.golf.Location = new System.Drawing.Point(109, 88);
-            this.golf.Name = "golf";
-            this.golf.Size = new System.Drawing.Size(44, 17);
-            this.golf.TabIndex = 7;
-            this.golf.Text = "Golf";
-            this.golf.UseVisualStyleBackColor = true;
-            this.golf.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // martialArts
-            // 
-            this.martialArts.AutoSize = true;
-            this.martialArts.Location = new System.Drawing.Point(109, 111);
-            this.martialArts.Name = "martialArts";
-            this.martialArts.Size = new System.Drawing.Size(77, 17);
-            this.martialArts.TabIndex = 8;
-            this.martialArts.Text = "Martial Arts";
-            this.martialArts.UseVisualStyleBackColor = true;
-            this.martialArts.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // soccer
-            // 
-            this.soccer.AutoSize = true;
-            this.soccer.Location = new System.Drawing.Point(109, 134);
-            this.soccer.Name = "soccer";
-            this.soccer.Size = new System.Drawing.Size(59, 17);
-            this.soccer.TabIndex = 9;
-            this.soccer.Text = "Soccer";
-            this.soccer.UseVisualStyleBackColor = true;
-            this.soccer.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // softball
-            // 
-            this.softball.AutoSize = true;
-            this.softball.Location = new System.Drawing.Point(202, 19);
-            this.softball.Name = "softball";
-            this.softball.Size = new System.Drawing.Size(60, 17);
-            this.softball.TabIndex = 10;
-            this.softball.Text = "Softball";
-            this.softball.UseVisualStyleBackColor = true;
-            this.softball.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // swimming
-            // 
-            this.swimming.AutoSize = true;
-            this.swimming.Location = new System.Drawing.Point(202, 42);
-            this.swimming.Name = "swimming";
-            this.swimming.Size = new System.Drawing.Size(72, 17);
-            this.swimming.TabIndex = 11;
-            this.swimming.Text = "Swimming";
-            this.swimming.UseVisualStyleBackColor = true;
-            this.swimming.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // tennis
-            // 
-            this.tennis.AutoSize = true;
-            this.tennis.Location = new System.Drawing.Point(202, 65);
-            this.tennis.Name = "tennis";
-            this.tennis.Size = new System.Drawing.Size(57, 17);
-            this.tennis.TabIndex = 12;
-            this.tennis.Text = "Tennis";
-            this.tennis.UseVisualStyleBackColor = true;
-            this.tennis.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // volleyball
-            // 
-            this.volleyball.AutoSize = true;
-            this.volleyball.Location = new System.Drawing.Point(202, 88);
-            this.volleyball.Name = "volleyball";
-            this.volleyball.Size = new System.Drawing.Size(69, 17);
-            this.volleyball.TabIndex = 13;
-            this.volleyball.Text = "Volleyball";
-            this.volleyball.UseVisualStyleBackColor = true;
-            this.volleyball.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // winterSports
-            // 
-            this.winterSports.AutoSize = true;
-            this.winterSports.Location = new System.Drawing.Point(202, 111);
-            this.winterSports.Name = "winterSports";
-            this.winterSports.Size = new System.Drawing.Size(89, 17);
-            this.winterSports.TabIndex = 14;
-            this.winterSports.Text = "Winter Sports";
-            this.winterSports.UseVisualStyleBackColor = true;
-            this.winterSports.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
             // CrawlerWF
             // 

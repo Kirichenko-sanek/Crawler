@@ -11,15 +11,11 @@ namespace Crawler.WF
     {
         private readonly IManager _manager;
         private string path = "";
-        BackgroundWorker bgw = new BackgroundWorker();
 
         public CrawlerWF(IManager manager)
         {
             InitializeComponent();
-
             backgroundWorker.WorkerReportsProgress = true;
-            backgroundWorker.DoWork += backgroundWorker_DoWork;
-            backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
 
             _manager = manager;
             folder.Text = "";
@@ -29,89 +25,99 @@ namespace Crawler.WF
 
         private void Start_Click(object sender, EventArgs e)
         {
-            var buttons = this.activGroupBox.Controls.OfType<RadioButton>()
-                           .FirstOrDefault(n => n.Checked);
+            backgroundWorker.RunWorkerAsync();
             Start.Enabled = false;
+            folderButton.Enabled = false;
+            activGroupBox.Enabled = false;
             MessageBox.Show(@"Performed data collection. Please wait");
-            if (buttons != null)
+            var a = new Thread(() =>
             {
-                switch (buttons.Name)
+                var buttons = this.activGroupBox.Controls.OfType<RadioButton>()
+                    .FirstOrDefault(n => n.Checked);
+
+                if (buttons != null)
                 {
-                    case "running":
+                    switch (buttons.Name)
                     {
-                        _manager.GetInfoActivComManagerRunning(path);
-                        break;
-                    }
-                    case "cucling":
-                    {
-                        _manager.GetInfoActivComManagerCycling(path);
-                        break;
-                    }
-                    case "triathlon":
-                    {
-                        _manager.GetInfoActivComManagerTriathlon(path);
-                        break;
-                    }
-                    case "baseball":
-                    {
-                        _manager.GetInfoActivComManagerBaseball(path);
-                        break;
-                    }
-                    case "basketball":
-                    {
-                        _manager.GetInfoActivComManagerBasketball(path);
-                        break;
-                    }
-                    case "football":
-                    {
-                        _manager.GetInfoActivComManagerFootball(path);
-                        break;
-                    }
-                    case "golf":
-                    {
-                        _manager.GetInfoActivComManagerGolf(path);
-                        break;
-                    }
-                    case "martialArts":
-                    {
-                        _manager.GetInfoActivComManagerMartialArts(path);
-                        break;
-                    }
-                    case "soccer":
-                    {
-                        _manager.GetInfoActivComManagerSoccer(path);
-                        break;
-                    }
-                    case "softball":
-                    {
-                        _manager.GetInfoActivComManagerSoftball(path);
-                        break;
-                    }
-                    case "swimming":
-                    {
-                        _manager.GetInfoActivComManagerSwimming(path);
-                        break;
-                    }
-                    case "tennis":
-                    {
-                        _manager.GetInfoActivComManagerTennis(path);
-                        break;
-                    }
-                    case "volleyball":
-                    {
-                        _manager.GetInfoActivComManagerVolleyball(path);
-                        break;
-                    }
-                    case "winterSports":
-                    {
-                        _manager.GetInfoActivComManagerWinterSports(path);
-                        break;
+                        case "running":
+                        {
+                            _manager.GetInfoActivComManagerRunning(path);
+                            break;
+                        }
+                        case "cucling":
+                        {
+                            _manager.GetInfoActivComManagerCycling(path);
+                            break;
+                        }
+                        case "triathlon":
+                        {
+                            _manager.GetInfoActivComManagerTriathlon(path);
+                            break;
+                        }
+                        case "baseball":
+                        {
+                            _manager.GetInfoActivComManagerBaseball(path);
+                            break;
+                        }
+                        case "basketball":
+                        {
+                            _manager.GetInfoActivComManagerBasketball(path);
+                            break;
+                        }
+                        case "football":
+                        {
+                            _manager.GetInfoActivComManagerFootball(path);
+                            break;
+                        }
+                        case "golf":
+                        {
+                            _manager.GetInfoActivComManagerGolf(path);
+                            break;
+                        }
+                        case "martialArts":
+                        {
+                            _manager.GetInfoActivComManagerMartialArts(path);
+                            break;
+                        }
+                        case "soccer":
+                        {
+                            _manager.GetInfoActivComManagerSoccer(path);
+                            break;
+                        }
+                        case "softball":
+                        {
+                            _manager.GetInfoActivComManagerSoftball(path);
+                            break;
+                        }
+                        case "swimming":
+                        {
+                            _manager.GetInfoActivComManagerSwimming(path);
+                            break;
+                        }
+                        case "tennis":
+                        {
+                            _manager.GetInfoActivComManagerTennis(path);
+                            break;
+                        }
+                        case "volleyball":
+                        {
+                            _manager.GetInfoActivComManagerVolleyball(path);
+                            break;
+                        }
+                        case "winterSports":
+                        {
+                            _manager.GetInfoActivComManagerWinterSports(path);
+                            break;
+                        }
                     }
                 }
-            }
-            Start.Enabled = true;
-            //this.Enabled = true;
-            MessageBox.Show(@"End");
+
+            });
+
+            a.Start();
+
+
+
         }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
@@ -130,7 +136,7 @@ namespace Crawler.WF
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {          
+        {
             for (;;)
             {
                 var a = _manager.GetProgressMax();
@@ -138,17 +144,28 @@ namespace Crawler.WF
                 if (a != 0 && b != 0)
                 {
                     int c = b * 100 / a;
-                    //progressBarResult.Maximum = _manager.GetProgressMax();
                     backgroundWorker.ReportProgress(c);
                 }
-                Thread.Sleep(5000);
-
+                Thread.Sleep(2000);
+                if (b >= a && a != 0 )
+                {
+                    backgroundWorker.ReportProgress(0);
+                        break;   
+                }
             }
         }
 
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBarResult.Value = e.ProgressPercentage;
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Start.Enabled = true;
+            folderButton.Enabled = true;
+            activGroupBox.Enabled = true;
+            MessageBox.Show(@"End");
         }
     }
 }
