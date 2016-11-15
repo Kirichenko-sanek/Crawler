@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\Manager\IActivComManager.cs" />
+    <Compile Include="Interfaces\Manager\IActivKidsComManager.cs" />
     <Compile Include="Interfaces\Manager\IManager.cs" />
     <Compile Include="Interfaces\Repository\IRepository.cs" />
+    <Compile Include="Interfaces\Services\IActivService.cs" />
     <Compile Include="Model\Info.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

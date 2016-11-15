@@ -54,9 +54,11 @@
   <ItemGroup>
     <Compile Include="CW\AdminInstaller.cs" />
     <Compile Include="Manager\ActivComManager.cs" />
+    <Compile Include="Manager\ActivKidsComManager.cs" />
     <Compile Include="Manager\Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Services\ActivService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Crawler.Core\Crawler.Core.csproj">

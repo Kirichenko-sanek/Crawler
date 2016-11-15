@@ -6,10 +6,6 @@ namespace Crawler.Core.Interfaces.Manager
 {
     public interface IActivComManager
     {
-        int ProgresMax { get; set; }
-        int ProgresNow { get; set; }
-
-
         void GetTriathlon(string folder);
         void GetCycling(string folder);
         void GetRunning(string folder);
@@ -24,14 +20,12 @@ namespace Crawler.Core.Interfaces.Manager
         void GetTennis(string folder);
         void GetVolleyball(string folder);
         void GetWinterSports(string folder);
+        void GetFitness(string folder);
+        void GetOutdoors(string folder);
 
         void GetInfoActivCom(string type, string folder);
-        List<string> GetListPages(string type);
-        List<Info> ParsePages(List<string> elementList, string type);
-        string ConvertInfoToString(List<Info> info);
-        string GetOrganizerEmail(string organizer);
-        string FormatName(HtmlDocument html);
-        string FormatDate(HtmlDocument html);
-        string FormatPlace(HtmlDocument html);
+
+        int GetProgressMax();
+        int GetProgressNow();
     }
 }

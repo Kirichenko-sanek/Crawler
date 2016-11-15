@@ -82,15 +82,24 @@ namespace Crawler.BL.Manager
             _activComManager.GetWinterSports(folder);
         }
 
-        public int GetProgressMax()
+        public void GetInfoActivComManagerFitness(string folder)
         {
-            return _activComManager.ProgresMax;
+            _activComManager.GetFitness(folder);
         }
 
-        public int GetProgressNow()
+        public void GetInfoActivComManagerOutdoors(string folder)
         {
-            return _activComManager.ProgresNow;
+            _activComManager.GetOutdoors(folder);
         }
 
+        public int GetProgressMaxActivCom()
+        {
+            return _activComManager.GetProgressMax();
+        }
+
+        public int GetProgressNowActivCom()
+        {
+            return _activComManager.GetProgressNow(); ;
+        }
     }
 }

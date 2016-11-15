@@ -17,8 +17,10 @@
         void GetInfoActivComManagerTennis(string folder);
         void GetInfoActivComManagerVolleyball(string folder);
         void GetInfoActivComManagerWinterSports(string folder);
+        void GetInfoActivComManagerFitness(string folder);
+        void GetInfoActivComManagerOutdoors(string folder);
 
-        int GetProgressMax();
-        int GetProgressNow();
+        int GetProgressMaxActivCom();
+        int GetProgressNowActivCom();
     }
 }

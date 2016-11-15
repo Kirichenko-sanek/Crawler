@@ -25,14 +25,17 @@ namespace Crawler.WF
 
         private void Start_Click(object sender, EventArgs e)
         {
-            backgroundWorker.RunWorkerAsync();
+            
             Start.Enabled = false;
             folderButton.Enabled = false;
             activGroupBox.Enabled = false;
+            activKidsGroupBox.Enabled = false;
             MessageBox.Show(@"Performed data collection. Please wait");
             var a = new Thread(() =>
             {
                 var buttons = this.activGroupBox.Controls.OfType<RadioButton>()
+                    .FirstOrDefault(n => n.Checked);
+                var buttonsKids = this.activKidsGroupBox.Controls.OfType<RadioButton>()
                     .FirstOrDefault(n => n.Checked);
 
                 if (buttons != null)
@@ -109,13 +112,34 @@ namespace Crawler.WF
                             _manager.GetInfoActivComManagerWinterSports(path);
                             break;
                         }
+                        case "fitness":
+                        {
+                            _manager.GetInfoActivComManagerFitness(path);
+                            break;
+                        }
+                        case "outdoors":
+                        {
+                            _manager.GetInfoActivComManagerOutdoors(path);
+                            break;
+                        }
+                    }
+                }
+                if (buttonsKids != null)
+                {
+                    switch (buttonsKids.Name)
+                    {
+                        case "running":
+                        {
+                            _manager.GetInfoActivComManagerRunning(path);
+                            break;
+                        }
                     }
                 }
 
             });
-
+            backgroundWorker.RunWorkerAsync();
             a.Start();
-
+            
 
 
         }
@@ -137,10 +161,11 @@ namespace Crawler.WF
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            Thread.Sleep(10000);
             for (;;)
             {
-                var a = _manager.GetProgressMax();
-                var b = _manager.GetProgressNow();
+                var a = _manager.GetProgressMaxActivCom();
+                var b = _manager.GetProgressNowActivCom();
                 if (a != 0 && b != 0)
                 {
                     int c = b * 100 / a;
@@ -165,6 +190,7 @@ namespace Crawler.WF
             Start.Enabled = true;
             folderButton.Enabled = true;
             activGroupBox.Enabled = true;
+            activKidsGroupBox.Enabled = true;
             MessageBox.Show(@"End");
         }
     }
