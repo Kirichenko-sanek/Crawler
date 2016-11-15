@@ -1,5 +1,4 @@
-﻿
-namespace Crawler.Core.Interfaces.Repository
+﻿namespace Crawler.Core.Interfaces.Repository
 {
     public interface IRepository
     {

@@ -15,9 +15,14 @@ namespace Crawler.BL.Manager
     {
         private readonly IRepository _repository;
 
+        public int ProgresMax { get; set; }
+        public int ProgresNow { get; set; }
+
         public ActivComManager(IRepository repository)
         {
             _repository = repository;
+            ProgresMax = ProgresMax;
+            ProgresNow = ProgresNow;
         }
 
         public void GetTriathlon(string folder)
@@ -35,16 +40,69 @@ namespace Crawler.BL.Manager
             GetInfoActivCom("running", folder);
         }
 
+        public void GetBaseball(string folder)
+        {
+            GetInfoActivCom("Baseball",folder);
+        }
+
+        public void GetBasketball(string folder)
+        {
+            GetInfoActivCom("Basketball", folder);
+        }
+
+        public void GetFootball(string folder)
+        {
+            GetInfoActivCom("Football", folder);
+        }
+
+        public void GetGolf(string folder)
+        {
+            GetInfoActivCom("Golf", folder);
+        }
+
+        public void GetMartialArts(string folder)
+        {
+            GetInfoActivCom("Martial-Arts", folder);
+        }
+
+        public void GetSoccer(string folder)
+        {
+            GetInfoActivCom("Soccer", folder);
+        }
+
+        public void GetSoftball(string folder)
+        {
+            GetInfoActivCom("Softball", folder);
+        }
+
+        public void GetSwimming(string folder)
+        {
+            GetInfoActivCom("Swimming", folder);
+        }
+
+        public void GetTennis(string folder)
+        {
+            GetInfoActivCom("Tennis", folder);
+        }
+
+        public void GetVolleyball(string folder)
+        {
+            GetInfoActivCom("Volleyball", folder);
+        }
+
+        public void GetWinterSports(string folder)
+        {
+            GetInfoActivCom("Winter-Sports", folder);
+        }
+
         public void GetInfoActivCom(string type, string folder)
         {
-            //Console.WriteLine("Search events. Please wait(" + type + ")");
             var pages = GetListPages(type);
-            //Console.WriteLine("Events found(" + type + ")");
+            ProgresMax = pages.Count + 15;
             var info = ParsePages(pages, type);
-            //Console.WriteLine("Data processing(" + type + ")");
+
             var stringInfo = ConvertInfoToString(info);
             _repository.WriteToFile(stringInfo, type, folder);
-            //Console.WriteLine("Data save(" + type + ")");
         }
 
         public List<string> GetListPages(string type)
@@ -164,9 +222,10 @@ namespace Crawler.BL.Manager
                     information.Url = item;
                     information.Category = type;
                     info.Add(information);
+                    ProgresNow++;
                 }
             });
-
+            
             return info;
         }
 
@@ -322,8 +381,7 @@ namespace Crawler.BL.Manager
                                     }
                                 }
                             }
-                        }
-                        
+                        }       
                     }
                     if(emailsList.Count != 0)
                     {
@@ -331,7 +389,6 @@ namespace Crawler.BL.Manager
                     }
                     return " ";
                 }
-   
             }
             catch (Exception e)
             {
@@ -393,7 +450,6 @@ namespace Crawler.BL.Manager
         {
             try
             {
-
                 var addressName = html.DocumentNode.SelectSingleNode(
                     "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-name']")
                     ?.InnerText.Trim().Replace(",", " ") ?? "";
@@ -405,7 +461,6 @@ namespace Crawler.BL.Manager
                 var address =
                     html.DocumentNode.SelectNodes(
                         "//div[@class='ed-details']/div[@class='visible-desktop']/div[@class='event-details-address']/span[@class='ed-address-text']/span");
-
 
                 var add = "";
                 foreach (var str in address)
@@ -419,7 +474,6 @@ namespace Crawler.BL.Manager
                     return add;
                 }
                 return addressName + "; " + add;
-
             }
             catch (Exception)
             {
