@@ -16,17 +16,20 @@ namespace Crawler.WF
         {
             InitializeComponent();
             backgroundWorker.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerReportsProgress = true;
 
             _manager = manager;
             folder.Text = "";
             var path = "";
-            Start.Enabled = false;
+            StartActiv.Enabled = false;
+            StartActivKids.Enabled = false;
         }
 
-        private void Start_Click(object sender, EventArgs e)
+        private void StartActiv_Click(object sender, EventArgs e)
         {
             
-            Start.Enabled = false;
+            StartActiv.Enabled = false;
+            StartActivKids.Enabled = false;
             folderButton.Enabled = false;
             activGroupBox.Enabled = false;
             activKidsGroupBox.Enabled = false;
@@ -42,107 +45,62 @@ namespace Crawler.WF
                 {
                     switch (buttons.Name)
                     {
-                        case "running":
-                        {
-                            _manager.GetInfoActivComManagerRunning(path);
-                            break;
-                        }
-                        case "cucling":
-                        {
-                            _manager.GetInfoActivComManagerCycling(path);
-                            break;
-                        }
-                        case "triathlon":
-                        {
-                            _manager.GetInfoActivComManagerTriathlon(path);
-                            break;
-                        }
-                        case "baseball":
-                        {
-                            _manager.GetInfoActivComManagerBaseball(path);
-                            break;
-                        }
-                        case "basketball":
-                        {
-                            _manager.GetInfoActivComManagerBasketball(path);
-                            break;
-                        }
-                        case "football":
-                        {
-                            _manager.GetInfoActivComManagerFootball(path);
-                            break;
-                        }
-                        case "golf":
-                        {
-                            _manager.GetInfoActivComManagerGolf(path);
-                            break;
-                        }
-                        case "martialArts":
-                        {
-                            _manager.GetInfoActivComManagerMartialArts(path);
-                            break;
-                        }
-                        case "soccer":
-                        {
-                            _manager.GetInfoActivComManagerSoccer(path);
-                            break;
-                        }
-                        case "softball":
-                        {
-                            _manager.GetInfoActivComManagerSoftball(path);
-                            break;
-                        }
-                        case "swimming":
-                        {
-                            _manager.GetInfoActivComManagerSwimming(path);
-                            break;
-                        }
-                        case "tennis":
-                        {
-                            _manager.GetInfoActivComManagerTennis(path);
-                            break;
-                        }
-                        case "volleyball":
-                        {
-                            _manager.GetInfoActivComManagerVolleyball(path);
-                            break;
-                        }
-                        case "winterSports":
-                        {
-                            _manager.GetInfoActivComManagerWinterSports(path);
-                            break;
-                        }
-                        case "fitness":
-                        {
-                            _manager.GetInfoActivComManagerFitness(path);
-                            break;
-                        }
-                        case "outdoors":
-                        {
-                            _manager.GetInfoActivComManagerOutdoors(path);
-                            break;
-                        }
-                    }
+                        case "martialArtsActiv":
+                            {
+                                _manager.GetInfoActivComManager("Martial-Arts", path);
+                                break;
+                            }
+                        case "winterSportsActiv":
+                            {
+                                _manager.GetInfoActivComManager("Winter-Sports", path);
+                                break;
+                            }
+                        default:
+                            {
+                                _manager.GetInfoActivComManager(buttons.Name.Replace("Activ", ""), path);
+                                break;
+                            }
+                    }   
                 }
+            });
+            backgroundWorker.RunWorkerAsync();
+            a.Start();
+        }
+
+        private void StartActivKids_Click(object sender, EventArgs e)
+        {
+            StartActiv.Enabled = false;
+            StartActivKids.Enabled = false;
+            folderButton.Enabled = false;
+            activGroupBox.Enabled = false;
+            activKidsGroupBox.Enabled = false;
+            MessageBox.Show(@"Performed data collection. Please wait");
+            var a = new Thread(() =>
+            {
+                var buttonsKids = this.activKidsGroupBox.Controls.OfType<RadioButton>()
+                    .FirstOrDefault(n => n.Checked);
+
                 if (buttonsKids != null)
                 {
                     switch (buttonsKids.Name)
                     {
-                        case "running":
+                        case "martialArtsActivKids":
                         {
-                            _manager.GetInfoActivComManagerRunning(path);
+                            _manager.GetInfoActivKidsComManager("Martial-Arts", path);
+                            break;
+                        }
+                        default:
+                        {
+                            _manager.GetInfoActivKidsComManager(buttonsKids.Name.Replace("ActivKids",""), path);
                             break;
                         }
                     }
                 }
-
             });
-            backgroundWorker.RunWorkerAsync();
+            backgroundWorker1.RunWorkerAsync();
             a.Start();
-            
-
-
         }
+
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -155,7 +113,8 @@ namespace Crawler.WF
             {
                 folder.Text = fileDialog.SelectedPath;
                 path = fileDialog.SelectedPath;
-                Start.Enabled = true;
+                StartActiv.Enabled = true;
+                StartActivKids.Enabled = true;
             }
         }
 
@@ -179,7 +138,26 @@ namespace Crawler.WF
                 }
             }
         }
-
+        private void backgroundWorker_DoWork1(object sender, DoWorkEventArgs e)
+        {
+            Thread.Sleep(10000);
+            for (;;)
+            {
+                var a = _manager.GetProgressMaxActivKidsCom();
+                var b = _manager.GetProgressNowActivKidsCom();
+                if (a != 0 && b != 0)
+                {
+                    int c = b * 100 / a;
+                    backgroundWorker1.ReportProgress(c);
+                }
+                Thread.Sleep(2000);
+                if (b >= a && a != 0)
+                {
+                    backgroundWorker1.ReportProgress(0);
+                    break;
+                }
+            }
+        }
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBarResult.Value = e.ProgressPercentage;
@@ -187,11 +165,14 @@ namespace Crawler.WF
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Start.Enabled = true;
+            StartActiv.Enabled = true;
+            StartActivKids.Enabled = true;
             folderButton.Enabled = true;
             activGroupBox.Enabled = true;
             activKidsGroupBox.Enabled = true;
             MessageBox.Show(@"End");
         }
+
+       
     }
 }

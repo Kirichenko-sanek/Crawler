@@ -2,6 +2,8 @@
 {
     public interface IActivKidsComManager
     {
-
+        int GetProgressMax();
+        int GetProgressNow();
+        void GetInfoActivKidsCom(string type, string folder);
     }
 }

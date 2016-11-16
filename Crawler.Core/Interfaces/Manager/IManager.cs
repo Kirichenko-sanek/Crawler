@@ -2,25 +2,11 @@
 {
     public interface IManager
     {
-        void GetInfoActivComManagerRunning(string folder);
-        void GetInfoActivComManagerCycling(string folder);
-        void GetInfoActivComManagerTriathlon(string folder);
-
-        void GetInfoActivComManagerBaseball(string folder);
-        void GetInfoActivComManagerBasketball(string folder);
-        void GetInfoActivComManagerFootball(string folder);
-        void GetInfoActivComManagerGolf(string folder);
-        void GetInfoActivComManagerMartialArts(string folder);
-        void GetInfoActivComManagerSoccer(string folder);
-        void GetInfoActivComManagerSoftball(string folder);
-        void GetInfoActivComManagerSwimming(string folder);
-        void GetInfoActivComManagerTennis(string folder);
-        void GetInfoActivComManagerVolleyball(string folder);
-        void GetInfoActivComManagerWinterSports(string folder);
-        void GetInfoActivComManagerFitness(string folder);
-        void GetInfoActivComManagerOutdoors(string folder);
-
+        void GetInfoActivComManager(string type, string folder);
+        void GetInfoActivKidsComManager(string type, string folder);
         int GetProgressMaxActivCom();
         int GetProgressNowActivCom();
+        int GetProgressMaxActivKidsCom();
+        int GetProgressNowActivKidsCom();
     }
 }
