@@ -7,7 +7,7 @@ namespace Crawler.BL.Repository
     {
         public void WriteToFile(string info, string fileName,string folder)
         {
-            var str = folder +"/" + fileName + ".csv";
+            var str = folder +"/" + fileName.Replace("/","_") + ".csv";
             using (StreamWriter theWriter = new StreamWriter(@"" + str))
             {
                 theWriter.Write(info);

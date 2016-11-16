@@ -38,29 +38,27 @@ namespace Crawler.WF
             {
                 var buttons = this.activGroupBox.Controls.OfType<RadioButton>()
                     .FirstOrDefault(n => n.Checked);
-                var buttonsKids = this.activKidsGroupBox.Controls.OfType<RadioButton>()
-                    .FirstOrDefault(n => n.Checked);
 
                 if (buttons != null)
                 {
                     switch (buttons.Name)
                     {
                         case "martialArtsActiv":
-                            {
-                                _manager.GetInfoActivComManager("Martial-Arts", path);
-                                break;
-                            }
+                        {
+                            _manager.GetInfoActivComManager("Martial-Arts", path);
+                            break;
+                        }
                         case "winterSportsActiv":
-                            {
-                                _manager.GetInfoActivComManager("Winter-Sports", path);
-                                break;
-                            }
+                        {
+                            _manager.GetInfoActivComManager("Winter-Sports", path);
+                            break;
+                        }
                         default:
-                            {
-                                _manager.GetInfoActivComManager(buttons.Name.Replace("Activ", ""), path);
-                                break;
-                            }
-                    }   
+                        {
+                            _manager.GetInfoActivComManager(buttons.Name.Replace("Activ", ""), path);
+                            break;
+                        }
+                    }
                 }
             });
             backgroundWorker.RunWorkerAsync();
@@ -89,9 +87,34 @@ namespace Crawler.WF
                             _manager.GetInfoActivKidsComManager("Martial-Arts", path);
                             break;
                         }
+                        case "performingArtsActivKids":
+                        {
+                            _manager.GetInfoActivKidsComManager("Performing-Arts", path);
+                            break;
+                        }
+                        case "FoodAndNutritionActivKids":
+                        {
+                            _manager.GetInfoActivKidsComManager("Food-and-nutrition", path);
+                            break;
+                        }
+                        case "ArtsAndCraftsActivKids":
+                        {
+                            _manager.GetInfoActivKidsComManager("Arts-and-crafts", path);
+                            break;
+                        }
+                        case "HikingActivKids":
+                        {
+                            _manager.GetInfoActivKidsComManager("Outdoors/Hiking", path);
+                            break;
+                        }
+                        case "CampingActivKids":
+                        {
+                            _manager.GetInfoActivKidsComManager("Outdoors/Camping", path);
+                            break;
+                        }
                         default:
                         {
-                            _manager.GetInfoActivKidsComManager(buttonsKids.Name.Replace("ActivKids",""), path);
+                            _manager.GetInfoActivKidsComManager(buttonsKids.Name.Replace("ActivKids", ""), path);
                             break;
                         }
                     }

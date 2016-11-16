@@ -45,7 +45,7 @@
             this.BasketballActiv = new System.Windows.Forms.RadioButton();
             this.BaseballActiv = new System.Windows.Forms.RadioButton();
             this.TriathlonActiv = new System.Windows.Forms.RadioButton();
-            this.CuclingActiv = new System.Windows.Forms.RadioButton();
+            this.CyclingActiv = new System.Windows.Forms.RadioButton();
             this.folderButton = new System.Windows.Forms.Button();
             this.folder = new System.Windows.Forms.Label();
             this.fileDialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -72,15 +72,28 @@
             this.BaseballActivKids = new System.Windows.Forms.RadioButton();
             this.BasketballActivKids = new System.Windows.Forms.RadioButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.performingArtsActivKids = new System.Windows.Forms.RadioButton();
+            this.GymnasticsActivKids = new System.Windows.Forms.RadioButton();
+            this.TumblingActivKids = new System.Windows.Forms.RadioButton();
+            this.CheerleadingActivKids = new System.Windows.Forms.RadioButton();
+            this.GamesActivKids = new System.Windows.Forms.RadioButton();
+            this.AcademicsActivKids = new System.Windows.Forms.RadioButton();
+            this.LanguagesActivKids = new System.Windows.Forms.RadioButton();
+            this.FoodAndNutritionActivKids = new System.Windows.Forms.RadioButton();
+            this.ArtsAndCraftsActivKids = new System.Windows.Forms.RadioButton();
+            this.HikingActivKids = new System.Windows.Forms.RadioButton();
+            this.CampingActivKids = new System.Windows.Forms.RadioButton();
+            this.CampsActivKids = new System.Windows.Forms.RadioButton();
+            this.FishingActivKids = new System.Windows.Forms.RadioButton();
             this.activGroupBox.SuspendLayout();
             this.activKidsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // StartActiv
             // 
-            this.StartActiv.Location = new System.Drawing.Point(6, 157);
+            this.StartActiv.Location = new System.Drawing.Point(6, 206);
             this.StartActiv.Name = "StartActiv";
-            this.StartActiv.Size = new System.Drawing.Size(254, 23);
+            this.StartActiv.Size = new System.Drawing.Size(171, 23);
             this.StartActiv.TabIndex = 0;
             this.StartActiv.Text = "Start";
             this.StartActiv.UseVisualStyleBackColor = true;
@@ -116,11 +129,11 @@
             this.activGroupBox.Controls.Add(this.BasketballActiv);
             this.activGroupBox.Controls.Add(this.BaseballActiv);
             this.activGroupBox.Controls.Add(this.TriathlonActiv);
-            this.activGroupBox.Controls.Add(this.CuclingActiv);
+            this.activGroupBox.Controls.Add(this.CyclingActiv);
             this.activGroupBox.Controls.Add(this.RunningActiv);
             this.activGroupBox.Location = new System.Drawing.Point(12, 12);
             this.activGroupBox.Name = "activGroupBox";
-            this.activGroupBox.Size = new System.Drawing.Size(266, 200);
+            this.activGroupBox.Size = new System.Drawing.Size(188, 242);
             this.activGroupBox.TabIndex = 2;
             this.activGroupBox.TabStop = false;
             this.activGroupBox.Text = "active.com";
@@ -148,7 +161,7 @@
             // winterSportsActiv
             // 
             this.winterSportsActiv.AutoSize = true;
-            this.winterSportsActiv.Location = new System.Drawing.Point(178, 111);
+            this.winterSportsActiv.Location = new System.Drawing.Point(88, 183);
             this.winterSportsActiv.Name = "winterSportsActiv";
             this.winterSportsActiv.Size = new System.Drawing.Size(89, 17);
             this.winterSportsActiv.TabIndex = 14;
@@ -159,7 +172,7 @@
             // VolleyballActiv
             // 
             this.VolleyballActiv.AutoSize = true;
-            this.VolleyballActiv.Location = new System.Drawing.Point(178, 88);
+            this.VolleyballActiv.Location = new System.Drawing.Point(88, 160);
             this.VolleyballActiv.Name = "VolleyballActiv";
             this.VolleyballActiv.Size = new System.Drawing.Size(69, 17);
             this.VolleyballActiv.TabIndex = 13;
@@ -170,7 +183,7 @@
             // TennisActiv
             // 
             this.TennisActiv.AutoSize = true;
-            this.TennisActiv.Location = new System.Drawing.Point(178, 65);
+            this.TennisActiv.Location = new System.Drawing.Point(88, 134);
             this.TennisActiv.Name = "TennisActiv";
             this.TennisActiv.Size = new System.Drawing.Size(57, 17);
             this.TennisActiv.TabIndex = 12;
@@ -181,7 +194,7 @@
             // SwimmingActiv
             // 
             this.SwimmingActiv.AutoSize = true;
-            this.SwimmingActiv.Location = new System.Drawing.Point(178, 42);
+            this.SwimmingActiv.Location = new System.Drawing.Point(88, 111);
             this.SwimmingActiv.Name = "SwimmingActiv";
             this.SwimmingActiv.Size = new System.Drawing.Size(72, 17);
             this.SwimmingActiv.TabIndex = 11;
@@ -192,7 +205,7 @@
             // SoftballActiv
             // 
             this.SoftballActiv.AutoSize = true;
-            this.SoftballActiv.Location = new System.Drawing.Point(178, 19);
+            this.SoftballActiv.Location = new System.Drawing.Point(88, 88);
             this.SoftballActiv.Name = "SoftballActiv";
             this.SoftballActiv.Size = new System.Drawing.Size(60, 17);
             this.SoftballActiv.TabIndex = 10;
@@ -203,7 +216,7 @@
             // SoccerActiv
             // 
             this.SoccerActiv.AutoSize = true;
-            this.SoccerActiv.Location = new System.Drawing.Point(88, 134);
+            this.SoccerActiv.Location = new System.Drawing.Point(88, 65);
             this.SoccerActiv.Name = "SoccerActiv";
             this.SoccerActiv.Size = new System.Drawing.Size(59, 17);
             this.SoccerActiv.TabIndex = 9;
@@ -214,7 +227,7 @@
             // martialArtsActiv
             // 
             this.martialArtsActiv.AutoSize = true;
-            this.martialArtsActiv.Location = new System.Drawing.Point(88, 111);
+            this.martialArtsActiv.Location = new System.Drawing.Point(88, 42);
             this.martialArtsActiv.Name = "martialArtsActiv";
             this.martialArtsActiv.Size = new System.Drawing.Size(77, 17);
             this.martialArtsActiv.TabIndex = 8;
@@ -225,7 +238,7 @@
             // GolfActiv
             // 
             this.GolfActiv.AutoSize = true;
-            this.GolfActiv.Location = new System.Drawing.Point(88, 88);
+            this.GolfActiv.Location = new System.Drawing.Point(88, 19);
             this.GolfActiv.Name = "GolfActiv";
             this.GolfActiv.Size = new System.Drawing.Size(44, 17);
             this.GolfActiv.TabIndex = 7;
@@ -236,7 +249,7 @@
             // FootballActiv
             // 
             this.FootballActiv.AutoSize = true;
-            this.FootballActiv.Location = new System.Drawing.Point(88, 65);
+            this.FootballActiv.Location = new System.Drawing.Point(6, 183);
             this.FootballActiv.Name = "FootballActiv";
             this.FootballActiv.Size = new System.Drawing.Size(62, 17);
             this.FootballActiv.TabIndex = 6;
@@ -247,7 +260,7 @@
             // BasketballActiv
             // 
             this.BasketballActiv.AutoSize = true;
-            this.BasketballActiv.Location = new System.Drawing.Point(88, 42);
+            this.BasketballActiv.Location = new System.Drawing.Point(6, 160);
             this.BasketballActiv.Name = "BasketballActiv";
             this.BasketballActiv.Size = new System.Drawing.Size(74, 17);
             this.BasketballActiv.TabIndex = 5;
@@ -258,7 +271,7 @@
             // BaseballActiv
             // 
             this.BaseballActiv.AutoSize = true;
-            this.BaseballActiv.Location = new System.Drawing.Point(88, 19);
+            this.BaseballActiv.Location = new System.Drawing.Point(6, 134);
             this.BaseballActiv.Name = "BaseballActiv";
             this.BaseballActiv.Size = new System.Drawing.Size(65, 17);
             this.BaseballActiv.TabIndex = 4;
@@ -277,22 +290,22 @@
             this.TriathlonActiv.UseVisualStyleBackColor = true;
             this.TriathlonActiv.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
-            // CuclingActiv
+            // CyclingActiv
             // 
-            this.CuclingActiv.AutoSize = true;
-            this.CuclingActiv.Location = new System.Drawing.Point(6, 42);
-            this.CuclingActiv.Name = "CuclingActiv";
-            this.CuclingActiv.Size = new System.Drawing.Size(59, 17);
-            this.CuclingActiv.TabIndex = 2;
-            this.CuclingActiv.Text = "Cycling";
-            this.CuclingActiv.UseVisualStyleBackColor = true;
-            this.CuclingActiv.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            this.CyclingActiv.AutoSize = true;
+            this.CyclingActiv.Location = new System.Drawing.Point(6, 42);
+            this.CyclingActiv.Name = "CyclingActiv";
+            this.CyclingActiv.Size = new System.Drawing.Size(59, 17);
+            this.CyclingActiv.TabIndex = 2;
+            this.CyclingActiv.Text = "Cycling";
+            this.CyclingActiv.UseVisualStyleBackColor = true;
+            this.CyclingActiv.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // folderButton
             // 
-            this.folderButton.Location = new System.Drawing.Point(12, 218);
+            this.folderButton.Location = new System.Drawing.Point(12, 269);
             this.folderButton.Name = "folderButton";
-            this.folderButton.Size = new System.Drawing.Size(132, 23);
+            this.folderButton.Size = new System.Drawing.Size(188, 23);
             this.folderButton.TabIndex = 3;
             this.folderButton.Text = "Select folder";
             this.folderButton.UseVisualStyleBackColor = true;
@@ -301,7 +314,7 @@
             // folder
             // 
             this.folder.AutoSize = true;
-            this.folder.Location = new System.Drawing.Point(155, 228);
+            this.folder.Location = new System.Drawing.Point(209, 274);
             this.folder.Name = "folder";
             this.folder.Size = new System.Drawing.Size(35, 13);
             this.folder.TabIndex = 4;
@@ -309,9 +322,9 @@
             // 
             // progressBarResult
             // 
-            this.progressBarResult.Location = new System.Drawing.Point(12, 274);
+            this.progressBarResult.Location = new System.Drawing.Point(12, 313);
             this.progressBarResult.Name = "progressBarResult";
-            this.progressBarResult.Size = new System.Drawing.Size(278, 23);
+            this.progressBarResult.Size = new System.Drawing.Size(604, 23);
             this.progressBarResult.TabIndex = 5;
             // 
             // backgroundWorker
@@ -322,6 +335,19 @@
             // 
             // activKidsGroupBox
             // 
+            this.activKidsGroupBox.Controls.Add(this.FishingActivKids);
+            this.activKidsGroupBox.Controls.Add(this.CampsActivKids);
+            this.activKidsGroupBox.Controls.Add(this.CampingActivKids);
+            this.activKidsGroupBox.Controls.Add(this.HikingActivKids);
+            this.activKidsGroupBox.Controls.Add(this.ArtsAndCraftsActivKids);
+            this.activKidsGroupBox.Controls.Add(this.FoodAndNutritionActivKids);
+            this.activKidsGroupBox.Controls.Add(this.LanguagesActivKids);
+            this.activKidsGroupBox.Controls.Add(this.AcademicsActivKids);
+            this.activKidsGroupBox.Controls.Add(this.GamesActivKids);
+            this.activKidsGroupBox.Controls.Add(this.CheerleadingActivKids);
+            this.activKidsGroupBox.Controls.Add(this.TumblingActivKids);
+            this.activKidsGroupBox.Controls.Add(this.GymnasticsActivKids);
+            this.activKidsGroupBox.Controls.Add(this.performingArtsActivKids);
             this.activKidsGroupBox.Controls.Add(this.StartActivKids);
             this.activKidsGroupBox.Controls.Add(this.TennisActivKids);
             this.activKidsGroupBox.Controls.Add(this.GolfActivKids);
@@ -341,18 +367,18 @@
             this.activKidsGroupBox.Controls.Add(this.SoftballActivKids);
             this.activKidsGroupBox.Controls.Add(this.BaseballActivKids);
             this.activKidsGroupBox.Controls.Add(this.BasketballActivKids);
-            this.activKidsGroupBox.Location = new System.Drawing.Point(294, 12);
+            this.activKidsGroupBox.Location = new System.Drawing.Point(206, 12);
             this.activKidsGroupBox.Name = "activKidsGroupBox";
-            this.activKidsGroupBox.Size = new System.Drawing.Size(389, 200);
+            this.activKidsGroupBox.Size = new System.Drawing.Size(410, 242);
             this.activKidsGroupBox.TabIndex = 6;
             this.activKidsGroupBox.TabStop = false;
             this.activKidsGroupBox.Text = "activekids.com";
             // 
             // StartActivKids
             // 
-            this.StartActivKids.Location = new System.Drawing.Point(6, 157);
+            this.StartActivKids.Location = new System.Drawing.Point(6, 206);
             this.StartActivKids.Name = "StartActivKids";
-            this.StartActivKids.Size = new System.Drawing.Size(254, 23);
+            this.StartActivKids.Size = new System.Drawing.Size(396, 23);
             this.StartActivKids.TabIndex = 27;
             this.StartActivKids.Text = "Start";
             this.StartActivKids.UseVisualStyleBackColor = true;
@@ -361,7 +387,7 @@
             // TennisActivKids
             // 
             this.TennisActivKids.AutoSize = true;
-            this.TennisActivKids.Location = new System.Drawing.Point(177, 134);
+            this.TennisActivKids.Location = new System.Drawing.Point(98, 134);
             this.TennisActivKids.Name = "TennisActivKids";
             this.TennisActivKids.Size = new System.Drawing.Size(57, 17);
             this.TennisActivKids.TabIndex = 26;
@@ -371,7 +397,7 @@
             // GolfActivKids
             // 
             this.GolfActivKids.AutoSize = true;
-            this.GolfActivKids.Location = new System.Drawing.Point(177, 111);
+            this.GolfActivKids.Location = new System.Drawing.Point(97, 111);
             this.GolfActivKids.Name = "GolfActivKids";
             this.GolfActivKids.Size = new System.Drawing.Size(44, 17);
             this.GolfActivKids.TabIndex = 25;
@@ -381,7 +407,7 @@
             // ZumbaActivKids
             // 
             this.ZumbaActivKids.AutoSize = true;
-            this.ZumbaActivKids.Location = new System.Drawing.Point(177, 88);
+            this.ZumbaActivKids.Location = new System.Drawing.Point(97, 180);
             this.ZumbaActivKids.Name = "ZumbaActivKids";
             this.ZumbaActivKids.Size = new System.Drawing.Size(58, 17);
             this.ZumbaActivKids.TabIndex = 24;
@@ -391,7 +417,7 @@
             // YogaActivKids
             // 
             this.YogaActivKids.AutoSize = true;
-            this.YogaActivKids.Location = new System.Drawing.Point(177, 65);
+            this.YogaActivKids.Location = new System.Drawing.Point(98, 160);
             this.YogaActivKids.Name = "YogaActivKids";
             this.YogaActivKids.Size = new System.Drawing.Size(50, 17);
             this.YogaActivKids.TabIndex = 23;
@@ -401,7 +427,7 @@
             // FitnessActivKids
             // 
             this.FitnessActivKids.AutoSize = true;
-            this.FitnessActivKids.Location = new System.Drawing.Point(177, 42);
+            this.FitnessActivKids.Location = new System.Drawing.Point(185, 19);
             this.FitnessActivKids.Name = "FitnessActivKids";
             this.FitnessActivKids.Size = new System.Drawing.Size(58, 17);
             this.FitnessActivKids.TabIndex = 22;
@@ -411,7 +437,7 @@
             // martialArtsActivKids
             // 
             this.martialArtsActivKids.AutoSize = true;
-            this.martialArtsActivKids.Location = new System.Drawing.Point(177, 19);
+            this.martialArtsActivKids.Location = new System.Drawing.Point(185, 42);
             this.martialArtsActivKids.Name = "martialArtsActivKids";
             this.martialArtsActivKids.Size = new System.Drawing.Size(77, 17);
             this.martialArtsActivKids.TabIndex = 21;
@@ -421,7 +447,7 @@
             // SkatingActivKids
             // 
             this.SkatingActivKids.AutoSize = true;
-            this.SkatingActivKids.Location = new System.Drawing.Point(97, 134);
+            this.SkatingActivKids.Location = new System.Drawing.Point(97, 88);
             this.SkatingActivKids.Name = "SkatingActivKids";
             this.SkatingActivKids.Size = new System.Drawing.Size(61, 17);
             this.SkatingActivKids.TabIndex = 20;
@@ -431,7 +457,7 @@
             // SkillsActivKids
             // 
             this.SkillsActivKids.AutoSize = true;
-            this.SkillsActivKids.Location = new System.Drawing.Point(97, 111);
+            this.SkillsActivKids.Location = new System.Drawing.Point(97, 65);
             this.SkillsActivKids.Name = "SkillsActivKids";
             this.SkillsActivKids.Size = new System.Drawing.Size(49, 17);
             this.SkillsActivKids.TabIndex = 19;
@@ -441,7 +467,7 @@
             // SwimmingActivKids
             // 
             this.SwimmingActivKids.AutoSize = true;
-            this.SwimmingActivKids.Location = new System.Drawing.Point(97, 88);
+            this.SwimmingActivKids.Location = new System.Drawing.Point(97, 42);
             this.SwimmingActivKids.Name = "SwimmingActivKids";
             this.SwimmingActivKids.Size = new System.Drawing.Size(72, 17);
             this.SwimmingActivKids.TabIndex = 18;
@@ -451,7 +477,7 @@
             // RunningActivKids
             // 
             this.RunningActivKids.AutoSize = true;
-            this.RunningActivKids.Location = new System.Drawing.Point(97, 65);
+            this.RunningActivKids.Location = new System.Drawing.Point(97, 19);
             this.RunningActivKids.Name = "RunningActivKids";
             this.RunningActivKids.Size = new System.Drawing.Size(65, 17);
             this.RunningActivKids.TabIndex = 17;
@@ -461,7 +487,7 @@
             // VolleyballActivKids
             // 
             this.VolleyballActivKids.AutoSize = true;
-            this.VolleyballActivKids.Location = new System.Drawing.Point(97, 42);
+            this.VolleyballActivKids.Location = new System.Drawing.Point(6, 183);
             this.VolleyballActivKids.Name = "VolleyballActivKids";
             this.VolleyballActivKids.Size = new System.Drawing.Size(69, 17);
             this.VolleyballActivKids.TabIndex = 16;
@@ -471,7 +497,7 @@
             // SoccerActivKids
             // 
             this.SoccerActivKids.AutoSize = true;
-            this.SoccerActivKids.Location = new System.Drawing.Point(97, 19);
+            this.SoccerActivKids.Location = new System.Drawing.Point(6, 160);
             this.SoccerActivKids.Name = "SoccerActivKids";
             this.SoccerActivKids.Size = new System.Drawing.Size(59, 17);
             this.SoccerActivKids.TabIndex = 15;
@@ -546,11 +572,141 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
+            // performingArtsActivKids
+            // 
+            this.performingArtsActivKids.AutoSize = true;
+            this.performingArtsActivKids.Location = new System.Drawing.Point(185, 65);
+            this.performingArtsActivKids.Name = "performingArtsActivKids";
+            this.performingArtsActivKids.Size = new System.Drawing.Size(96, 17);
+            this.performingArtsActivKids.TabIndex = 28;
+            this.performingArtsActivKids.Text = "Performing Arts";
+            this.performingArtsActivKids.UseVisualStyleBackColor = true;
+            // 
+            // GymnasticsActivKids
+            // 
+            this.GymnasticsActivKids.AutoSize = true;
+            this.GymnasticsActivKids.Location = new System.Drawing.Point(185, 88);
+            this.GymnasticsActivKids.Name = "GymnasticsActivKids";
+            this.GymnasticsActivKids.Size = new System.Drawing.Size(79, 17);
+            this.GymnasticsActivKids.TabIndex = 29;
+            this.GymnasticsActivKids.Text = "Gymnastics";
+            this.GymnasticsActivKids.UseVisualStyleBackColor = true;
+            // 
+            // TumblingActivKids
+            // 
+            this.TumblingActivKids.AutoSize = true;
+            this.TumblingActivKids.Location = new System.Drawing.Point(185, 111);
+            this.TumblingActivKids.Name = "TumblingActivKids";
+            this.TumblingActivKids.Size = new System.Drawing.Size(68, 17);
+            this.TumblingActivKids.TabIndex = 30;
+            this.TumblingActivKids.Text = "Tumbling";
+            this.TumblingActivKids.UseVisualStyleBackColor = true;
+            // 
+            // CheerleadingActivKids
+            // 
+            this.CheerleadingActivKids.AutoSize = true;
+            this.CheerleadingActivKids.Location = new System.Drawing.Point(185, 134);
+            this.CheerleadingActivKids.Name = "CheerleadingActivKids";
+            this.CheerleadingActivKids.Size = new System.Drawing.Size(87, 17);
+            this.CheerleadingActivKids.TabIndex = 31;
+            this.CheerleadingActivKids.Text = "Cheerleading";
+            this.CheerleadingActivKids.UseVisualStyleBackColor = true;
+            // 
+            // GamesActivKids
+            // 
+            this.GamesActivKids.AutoSize = true;
+            this.GamesActivKids.Location = new System.Drawing.Point(185, 160);
+            this.GamesActivKids.Name = "GamesActivKids";
+            this.GamesActivKids.Size = new System.Drawing.Size(58, 17);
+            this.GamesActivKids.TabIndex = 32;
+            this.GamesActivKids.Text = "Games";
+            this.GamesActivKids.UseVisualStyleBackColor = true;
+            // 
+            // AcademicsActivKids
+            // 
+            this.AcademicsActivKids.AutoSize = true;
+            this.AcademicsActivKids.Location = new System.Drawing.Point(185, 180);
+            this.AcademicsActivKids.Name = "AcademicsActivKids";
+            this.AcademicsActivKids.Size = new System.Drawing.Size(77, 17);
+            this.AcademicsActivKids.TabIndex = 33;
+            this.AcademicsActivKids.Text = "Academics";
+            this.AcademicsActivKids.UseVisualStyleBackColor = true;
+            // 
+            // LanguagesActivKids
+            // 
+            this.LanguagesActivKids.AutoSize = true;
+            this.LanguagesActivKids.Location = new System.Drawing.Point(292, 19);
+            this.LanguagesActivKids.Name = "LanguagesActivKids";
+            this.LanguagesActivKids.Size = new System.Drawing.Size(78, 17);
+            this.LanguagesActivKids.TabIndex = 34;
+            this.LanguagesActivKids.Text = "Languages";
+            this.LanguagesActivKids.UseVisualStyleBackColor = true;
+            // 
+            // FoodAndNutritionActivKids
+            // 
+            this.FoodAndNutritionActivKids.AutoSize = true;
+            this.FoodAndNutritionActivKids.Location = new System.Drawing.Point(292, 42);
+            this.FoodAndNutritionActivKids.Name = "FoodAndNutritionActivKids";
+            this.FoodAndNutritionActivKids.Size = new System.Drawing.Size(110, 17);
+            this.FoodAndNutritionActivKids.TabIndex = 35;
+            this.FoodAndNutritionActivKids.Text = "Food and nutrition";
+            this.FoodAndNutritionActivKids.UseVisualStyleBackColor = true;
+            // 
+            // ArtsAndCraftsActivKids
+            // 
+            this.ArtsAndCraftsActivKids.AutoSize = true;
+            this.ArtsAndCraftsActivKids.Location = new System.Drawing.Point(292, 65);
+            this.ArtsAndCraftsActivKids.Name = "ArtsAndCraftsActivKids";
+            this.ArtsAndCraftsActivKids.Size = new System.Drawing.Size(93, 17);
+            this.ArtsAndCraftsActivKids.TabIndex = 36;
+            this.ArtsAndCraftsActivKids.Text = "Arts and crafts";
+            this.ArtsAndCraftsActivKids.UseVisualStyleBackColor = true;
+            // 
+            // HikingActivKids
+            // 
+            this.HikingActivKids.AutoSize = true;
+            this.HikingActivKids.Location = new System.Drawing.Point(292, 88);
+            this.HikingActivKids.Name = "HikingActivKids";
+            this.HikingActivKids.Size = new System.Drawing.Size(55, 17);
+            this.HikingActivKids.TabIndex = 37;
+            this.HikingActivKids.Text = "Hiking";
+            this.HikingActivKids.UseVisualStyleBackColor = true;
+            // 
+            // CampingActivKids
+            // 
+            this.CampingActivKids.AutoSize = true;
+            this.CampingActivKids.Location = new System.Drawing.Point(292, 111);
+            this.CampingActivKids.Name = "CampingActivKids";
+            this.CampingActivKids.Size = new System.Drawing.Size(66, 17);
+            this.CampingActivKids.TabIndex = 38;
+            this.CampingActivKids.Text = "Camping";
+            this.CampingActivKids.UseVisualStyleBackColor = true;
+            // 
+            // CampsActivKids
+            // 
+            this.CampsActivKids.AutoSize = true;
+            this.CampsActivKids.Location = new System.Drawing.Point(292, 134);
+            this.CampsActivKids.Name = "CampsActivKids";
+            this.CampsActivKids.Size = new System.Drawing.Size(57, 17);
+            this.CampsActivKids.TabIndex = 39;
+            this.CampsActivKids.Text = "Camps";
+            this.CampsActivKids.UseVisualStyleBackColor = true;
+            // 
+            // FishingActivKids
+            // 
+            this.FishingActivKids.AutoSize = true;
+            this.FishingActivKids.Location = new System.Drawing.Point(292, 160);
+            this.FishingActivKids.Name = "FishingActivKids";
+            this.FishingActivKids.Size = new System.Drawing.Size(58, 17);
+            this.FishingActivKids.TabIndex = 40;
+            this.FishingActivKids.Text = "Fishing";
+            this.FishingActivKids.UseVisualStyleBackColor = true;
+            // 
             // CrawlerWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 319);
+            this.ClientSize = new System.Drawing.Size(626, 348);
             this.Controls.Add(this.activKidsGroupBox);
             this.Controls.Add(this.progressBarResult);
             this.Controls.Add(this.folder);
@@ -573,7 +729,7 @@
         private System.Windows.Forms.RadioButton RunningActiv;
         private System.Windows.Forms.GroupBox activGroupBox;
         private System.Windows.Forms.RadioButton TriathlonActiv;
-        private System.Windows.Forms.RadioButton CuclingActiv;
+        private System.Windows.Forms.RadioButton CyclingActiv;
         private System.Windows.Forms.Button folderButton;
         private System.Windows.Forms.Label folder;
         private System.Windows.Forms.FolderBrowserDialog fileDialog;
@@ -613,6 +769,19 @@
         private System.Windows.Forms.RadioButton TennisActivKids;
         private System.Windows.Forms.Button StartActivKids;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.RadioButton performingArtsActivKids;
+        private System.Windows.Forms.RadioButton GymnasticsActivKids;
+        private System.Windows.Forms.RadioButton TumblingActivKids;
+        private System.Windows.Forms.RadioButton CheerleadingActivKids;
+        private System.Windows.Forms.RadioButton GamesActivKids;
+        private System.Windows.Forms.RadioButton AcademicsActivKids;
+        private System.Windows.Forms.RadioButton LanguagesActivKids;
+        private System.Windows.Forms.RadioButton FoodAndNutritionActivKids;
+        private System.Windows.Forms.RadioButton ArtsAndCraftsActivKids;
+        private System.Windows.Forms.RadioButton HikingActivKids;
+        private System.Windows.Forms.RadioButton CampingActivKids;
+        private System.Windows.Forms.RadioButton CampsActivKids;
+        private System.Windows.Forms.RadioButton FishingActivKids;
     }
 }
 
