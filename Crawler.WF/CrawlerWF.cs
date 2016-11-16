@@ -32,8 +32,6 @@ namespace Crawler.WF
             StartActivKids.Enabled = false;
             folderButton.Enabled = false;
             activGroupBox.Enabled = false;
-            activKidsGroupBox.Enabled = false;
-            MessageBox.Show(@"Performed data collection. Please wait");
             var a = new Thread(() =>
             {
                 var buttons = this.activGroupBox.Controls.OfType<RadioButton>()
@@ -72,7 +70,6 @@ namespace Crawler.WF
             folderButton.Enabled = false;
             activGroupBox.Enabled = false;
             activKidsGroupBox.Enabled = false;
-            MessageBox.Show(@"Performed data collection. Please wait");
             var a = new Thread(() =>
             {
                 var buttonsKids = this.activKidsGroupBox.Controls.OfType<RadioButton>()
