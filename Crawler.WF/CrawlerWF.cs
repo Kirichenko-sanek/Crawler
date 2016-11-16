@@ -32,6 +32,7 @@ namespace Crawler.WF
             StartActivKids.Enabled = false;
             folderButton.Enabled = false;
             activGroupBox.Enabled = false;
+            activKidsGroupBox.Enabled = false;
             var a = new Thread(() =>
             {
                 var buttons = this.activGroupBox.Controls.OfType<RadioButton>()
