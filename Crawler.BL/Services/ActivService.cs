@@ -138,7 +138,7 @@ namespace Crawler.BL.Services
                         information.Email = " ";
                     }
 
-                    information.Url = item;
+                    information.Url = item.Replace(replace, "");
                     information.Category = type;
                     info.Add(information);
                     ProgresNow++;
